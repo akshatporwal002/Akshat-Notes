@@ -230,3 +230,5 @@ Export to Sheets
 - **The Shadow Recruiter:** As discussed, the **Interviewer Boss** roams this map. If he is over **China**, any student in the **Obsidian Wall** faces an "Ambush Interview."
     
 - **The Passive XP:** Once a country is "Conquered" (Midterm passed), it glows on the map and generates XP for your **Character Stats** (Logic, Systems, Architecture, etc.).
+
+![[Pasted image 20251228205715.png | 600]]
