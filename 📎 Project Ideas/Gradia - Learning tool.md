@@ -151,7 +151,10 @@ Challenges are framed as tactical combat encounters using the **Exercism-based 
     - **The Corrupted Compiler:** A debugging boss where you must "heal" broken code.
         
     - **The Constraint Ghost:** A manifestation of the Professor who demands specific techniques (e.g., "Use only recursion!").
-        
+
+![[interviewer boss 1.png | 600]]
+
+![[interviewer boss gemini.png | 600]]
 
 ---
 
