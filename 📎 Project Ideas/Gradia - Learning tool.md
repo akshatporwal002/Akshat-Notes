@@ -206,18 +206,18 @@ The app uses an **authentic 2D pixel-art aesthetic** reminiscent of Generation
 
 ### 🗺️ The Academix World Atlas: Subject & Realm Directory
 
-|Subject|Realm Name|Real-World Location|The Vibe|Core Subtopics & Languages|
-|---|---|---|---|---|
-|**1. Foundations**|**The Scholar’s Castle**|**USA** (Silicon Valley / Boston)|**Elite Academy:** Stone towers, ivy-covered tech campuses, and grand lecture halls.|Python, Java, Variables, Loops, Basic Logic, Object-Oriented Programming (OOP).|
-|**2. Logic & AI**|**The Oracle’s Grove**|**Greece**(Athens)|**Ancient Intellectual:** White marble, olive groves, and statues that calculate the future.|Discrete Math, Linear Algebra, Probability, Neural Networks, Machine Learning.|
-|**3. Web Dev**|**The Neon Boardwalk**|**Japan**(Tokyo / Osaka)|**Cyberpunk Coastal:** Vibrant neon signs, holographic storefronts, and high-tech piers.|HTML5, CSS3, JavaScript, React, Node.js, API Integration, Responsive Design.|
-|**4. Cybersecurity**|**The Obsidian Wall**|**China** (Great Wall)|**Impenetrable Defense:** A massive digital barrier blocking "malicious packets" in a frozen landscape.|Encryption, Firewalls, Ethical Hacking, Network Security, Authentication (OAuth).|
-|**5. Low-Level**|**Atlantis**|**Mid-Atlantic Ridge**|**Deep-Sea Industrial:** Submerged high-tech ruins where pressure (Memory) is everything.|C, C++, Assembly, Pointers, Memory Management (Malloc/Free), CPU Architecture.|
-|**6. Mobile Dev**|**The Pebble-Shire**|**New Zealand**|**Micro-Fantasy:** Lush green hills with "App Icon" hobbit-holes; small but powerful.|Swift (iOS), Kotlin (Android), Flutter, Battery Optimization, UI/UX, Push Notifications.|
-|**7. Game Dev**|**The Colosseum**|**Italy** (Rome)|**Gladiator Arena:** Stone stadium where you program the "Laws of Physics" for combat.|C#, Unity, Unreal Engine, Physics Engines, Collision Detection, Game Loops.|
-|**8. Big Data**|**The Infinite Library**|**Egypt**(Alexandria)|**Desert Archive:** A labyrinth of endless shelves stretching into the desert sands.|SQL, NoSQL, Database Design, Data Warehousing, Query Optimization, Big Data.|
-|**9. Cloud / DevOps**|**The Skylands**|**The Global Stratosphere**|**Roaming Steampunk:** A drifting cloud-city of brass pipes and pressure valves.|AWS, Azure, CI/CD Pipelines, Docker, Kubernetes, Server Management.|
-|**🏆 GLOBAL EVENTS**|**The Amazonian Hive**|**Brazil**(Amazon Jungle)|**Jungle Hackathon:** Tangled fiber-optic vines and high-stakes survival coding.|Competitive Programming, Kaggle-style Data Challenges, Algorithm Efficiency.|
+| Subject               | Realm Name               | Real-World Location               | The Vibe                                                                                                | Core Subtopics & Languages                                                               |
+| --------------------- | ------------------------ | --------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **1. Foundations**    | **The Scholar’s Castle** | **USA** (Silicon Valley / Boston) | **Elite Academy:** Stone towers, ivy-covered tech campuses, and grand lecture halls.                    | Python, Java, Variables, Loops, Basic Logic, Object-Oriented Programming (OOP).          |
+| **2. Logic & AI**     | **The Oracle’s Grove**   | **Greece**(Athens)                | **Ancient Intellectual:** White marble, olive groves, and statues that calculate the future.            | Discrete Math, Linear Algebra, Probability, Neural Networks, Machine Learning.           |
+| **3. Web Dev**        | **The Neon Boardwalk**   | **Japan**(Tokyo / Osaka)          | **Cyberpunk Coastal:** Vibrant neon signs, holographic storefronts, and high-tech piers.                | HTML5, CSS3, JavaScript, React, Node.js, API Integration, Responsive Design.             |
+| **4. Cybersecurity**  | **The Obsidian Wall**    | **China** (Great Wall)            | **Impenetrable Defense:** A massive digital barrier blocking "malicious packets" in a frozen landscape. | Encryption, Firewalls, Ethical Hacking, Network Security, Authentication (OAuth).        |
+| **5. Low-Level**      | **Atlantis**             | **Mid-Atlantic Ridge**            | **Deep-Sea Industrial:** Submerged high-tech ruins where pressure (Memory) is everything.               | C, C++, Assembly, Pointers, Memory Management (Malloc/Free), CPU Architecture.           |
+| **6. Mobile Dev**     | **The Pebble-Shire**     | **New Zealand**                   | **Micro-Fantasy:** Lush green hills with "App Icon" hobbit-holes; small but powerful.                   | Swift (iOS), Kotlin (Android), Flutter, Battery Optimization, UI/UX, Push Notifications. |
+| **7. Game Dev**       | **The Colosseum**        | **Italy** (Rome)                  | **Gladiator Arena:** Stone stadium where you program the "Laws of Physics" for combat.                  | C#, Unity, Unreal Engine, Physics Engines, Collision Detection, Game Loops.              |
+| **8. Big Data**       | **The Infinite Library** | **Egypt**(Alexandria)             | **Desert Archive:** A labyrinth of endless shelves stretching into the desert sands.                    | SQL, NoSQL, Database Design, Data Warehousing, Query Optimization, Big Data.             |
+| **9. Cloud / DevOps** | **The Skylands**         | **The Global Stratosphere**       | **Roaming Steampunk:** A drifting cloud-city of brass pipes and pressure valves.                        | AWS, Azure, CI/CD Pipelines, Docker, Kubernetes, Server Management.                      |
+| **🏆 GLOBAL EVENTS**  | **The Amazonian Hive**   | **Brazil**(Amazon Jungle)         | **Jungle Hackathon:** Tangled fiber-optic vines and high-stakes survival coding.                        | Competitive Programming, Kaggle-style Data Challenges, Algorithm Efficiency.             |
 
 Export to Sheets
 
