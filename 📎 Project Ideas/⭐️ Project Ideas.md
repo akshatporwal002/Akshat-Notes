@@ -1,7 +1,7 @@
 [[NBA machine learning]]
 [[AutoSplit]]
 [[Pulse - AI]]
-[[Academix - Learning tool]]
+[[Gradia - Learning tool]]
 
 Not written out:
 - Ai app that you can create strategies for trading and can simulate them. Use montecarlo testing 

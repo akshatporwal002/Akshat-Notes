@@ -1,21 +1,21 @@
-# 🧠 Mobile App Concept – Academix
+# 🧠 Mobile App Concept – Gradia
 
 ### University-Grade Software Engineering → Gamified Mobile Learning → AI-Driven Personalization
 
 ## 🌟 Overview
 
-Academix is a **mobile-first coding platform** that transforms dry **university lecture notes** into interactive, gamified lessons. It bridges the gap between casual coding apps (which are too easy) and full-scale university degrees (which are too inaccessible on the go).
+Gradia is a **mobile-first coding platform** that transforms dry **university lecture notes** into interactive, gamified lessons. It bridges the gap between casual coding apps (which are too easy) and full-scale university degrees (which are too inaccessible on the go).
 
 ---
 
 ## 🏁 Competitor Analysis: The "Gap" in the Market
 
-|Competitor|How it Works|Pros|Cons (Your Opportunity)|
-|---|---|---|---|
-|**Mimo**|Duolingo-style bite-sized lessons focused on Web Dev and Python.|Excellent gamification (streaks); very low friction for beginners.|**"Too Shallow":** Focuses on syntax, not CS theory. Content is generic and doesn't help with uni exams.|
-|**SoloLearn**|Community-driven learning with a mobile "Code Playground."|Strong social Q&A; built-in mobile IDE for sharing snippets.|**"Unstructured":** Content quality varies. Community answers can be wrong. Lacks a rigorous "Path" to passing a degree.|
-|**Codecademy Go**|Mobile companion to their desktop site.|Reputable brand; high-quality, professional curricula.|**"Desktop-First":** The mobile app is just a "supplement." You can't learn complex theory solely on the app.|
-|**Quizlet**|Flashcards and AI-generated study sets from notes.|Students already use it to memorize terms from their notes.|**"Non-Functional":** It can help you memorize what a "Pointer" is, but it can't teach you how to _code_ one.|
+| Competitor        | How it Works                                                     | Pros                                                               | Cons (Your Opportunity)                                                                                                  |
+| ----------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **Mimo**          | Duolingo-style bite-sized lessons focused on Web Dev and Python. | Excellent gamification (streaks); very low friction for beginners. | **"Too Shallow":** Focuses on syntax, not CS theory. Content is generic and doesn't help with uni exams.                 |
+| **SoloLearn**     | Community-driven learning with a mobile "Code Playground."       | Strong social Q&A; built-in mobile IDE for sharing snippets.       | **"Unstructured":** Content quality varies. Community answers can be wrong. Lacks a rigorous "Path" to passing a degree. |
+| **Codecademy Go** | Mobile companion to their desktop site.                          | Reputable brand; high-quality, professional curricula.             | **"Desktop-First":** The mobile app is just a "supplement." You can't learn complex theory solely on the app.            |
+| **Quizlet**       | Flashcards and AI-generated study sets from notes.               | Students already use it to memorize terms from their notes.        | **"Non-Functional":** It can help you memorize what a "Pointer" is, but it can't teach you how to _code_ one.            |
 
 Export to Sheets
 
@@ -203,3 +203,30 @@ The app uses an **authentic 2D pixel-art aesthetic** reminiscent of Generation
     
 
 ---
+
+### 🗺️ The Academix World Atlas: Subject & Realm Directory
+
+|Subject|Realm Name|Real-World Location|The Vibe|Core Subtopics & Languages|
+|---|---|---|---|---|
+|**1. Foundations**|**The Scholar’s Castle**|**USA** (Silicon Valley / Boston)|**Elite Academy:** Stone towers, ivy-covered tech campuses, and grand lecture halls.|Python, Java, Variables, Loops, Basic Logic, Object-Oriented Programming (OOP).|
+|**2. Logic & AI**|**The Oracle’s Grove**|**Greece**(Athens)|**Ancient Intellectual:** White marble, olive groves, and statues that calculate the future.|Discrete Math, Linear Algebra, Probability, Neural Networks, Machine Learning.|
+|**3. Web Dev**|**The Neon Boardwalk**|**Japan**(Tokyo / Osaka)|**Cyberpunk Coastal:** Vibrant neon signs, holographic storefronts, and high-tech piers.|HTML5, CSS3, JavaScript, React, Node.js, API Integration, Responsive Design.|
+|**4. Cybersecurity**|**The Obsidian Wall**|**China** (Great Wall)|**Impenetrable Defense:** A massive digital barrier blocking "malicious packets" in a frozen landscape.|Encryption, Firewalls, Ethical Hacking, Network Security, Authentication (OAuth).|
+|**5. Low-Level**|**Atlantis**|**Mid-Atlantic Ridge**|**Deep-Sea Industrial:** Submerged high-tech ruins where pressure (Memory) is everything.|C, C++, Assembly, Pointers, Memory Management (Malloc/Free), CPU Architecture.|
+|**6. Mobile Dev**|**The Pebble-Shire**|**New Zealand**|**Micro-Fantasy:** Lush green hills with "App Icon" hobbit-holes; small but powerful.|Swift (iOS), Kotlin (Android), Flutter, Battery Optimization, UI/UX, Push Notifications.|
+|**7. Game Dev**|**The Colosseum**|**Italy** (Rome)|**Gladiator Arena:** Stone stadium where you program the "Laws of Physics" for combat.|C#, Unity, Unreal Engine, Physics Engines, Collision Detection, Game Loops.|
+|**8. Big Data**|**The Infinite Library**|**Egypt**(Alexandria)|**Desert Archive:** A labyrinth of endless shelves stretching into the desert sands.|SQL, NoSQL, Database Design, Data Warehousing, Query Optimization, Big Data.|
+|**9. Cloud / DevOps**|**The Skylands**|**The Global Stratosphere**|**Roaming Steampunk:** A drifting cloud-city of brass pipes and pressure valves.|AWS, Azure, CI/CD Pipelines, Docker, Kubernetes, Server Management.|
+|**🏆 GLOBAL EVENTS**|**The Amazonian Hive**|**Brazil**(Amazon Jungle)|**Jungle Hackathon:** Tangled fiber-optic vines and high-stakes survival coding.|Competitive Programming, Kaggle-style Data Challenges, Algorithm Efficiency.|
+
+Export to Sheets
+
+---
+
+### 🛠️ The Mechanics of the Map
+
+- **The Travel System:** To move from **The Scholar's Castle** to the **Neon Boardwalk**, you must pass the "HTTP Gateway" test.
+    
+- **The Shadow Recruiter:** As discussed, the **Interviewer Boss** roams this map. If he is over **China**, any student in the **Obsidian Wall** faces an "Ambush Interview."
+    
+- **The Passive XP:** Once a country is "Conquered" (Midterm passed), it glows on the map and generates XP for your **Character Stats** (Logic, Systems, Architecture, etc.).
