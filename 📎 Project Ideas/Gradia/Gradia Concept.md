@@ -235,3 +235,4 @@ Export to Sheets
 - **The Passive XP:** Once a country is "Conquered" (Midterm passed), it glows on the map and generates XP for your **Character Stats** (Logic, Systems, Architecture, etc.).
 
 ![[Pasted image 20251228205715.png | 600]]
+
