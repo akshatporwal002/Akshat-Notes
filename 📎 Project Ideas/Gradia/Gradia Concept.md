@@ -173,7 +173,6 @@ The student builds an **Engineering Attribute** profile rather than generic st
     - **Rubber Duck Trinket:** Passive ability to "rubber-duck" a problem once per battle.
         
 - **The Forge:** Students use Gemini AI to "Forge" custom gear by summarizing chapters of their notes, creating items themed after their specific studies.
-    
 
 ---
 
