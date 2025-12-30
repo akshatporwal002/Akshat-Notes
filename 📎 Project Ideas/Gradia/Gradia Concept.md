@@ -193,7 +193,6 @@ Inspired by the _Hades_ "Heat" system, students can manually increase the diff
     
 
 ---
-
 ## 🎨 5. Visual Identity (Pokemon B&W Style)
 
 The app uses an **authentic 2D pixel-art aesthetic** reminiscent of Generation 5 (Black/White) Pokémon games.
