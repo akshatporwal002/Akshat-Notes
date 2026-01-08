@@ -50,3 +50,5 @@ S3 Intelligent-Tiering
 - ﻿﻿Archive Instant Access tier (automatic): objects not accessed for 90 days
 - ﻿﻿Archive Access tier (optional): configurable from 90 days to 700+ days
 - ﻿﻿Deep Archive Access tier (optional): config. from 180 days to 700+ days
+
+![[Pasted image 20260108185537.png | 600]]
