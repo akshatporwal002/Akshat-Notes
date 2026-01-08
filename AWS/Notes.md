@@ -6,7 +6,7 @@ S3 Durability and availability
 Durability: how often you lose an object
 - high durability(99.999999999%) of objects
 
-Availblility: how often it is availble
+Availability: how often it is availble
 - 99.99% availability
 
 Standard - General Purpose
