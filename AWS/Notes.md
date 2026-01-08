@@ -11,9 +11,9 @@ Availability: how often it is availble
 
 Standard - General Purpose
 - 99.99% availability 
-- used ofr frequently accessed data
+- used for frequently accessed data
 - low latency and high throughput
-- ustain 2 concurrent facility failures
+- sustain 2 concurrent facility failures
 - use case: big data analytics mobile and gaming applications and content distribution
 
 S3 Storage Classes - Infrequent Access
