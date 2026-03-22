@@ -3,6 +3,7 @@
 [[Pulse - AI]]
 [[Gradia - Learning tool]]
 [[Gradia - Learning]]
+[[Email-Summariser]]
 
 Not written out:
 - Ai app that you can create strategies for trading and can simulate them. Use montecarlo testing 
