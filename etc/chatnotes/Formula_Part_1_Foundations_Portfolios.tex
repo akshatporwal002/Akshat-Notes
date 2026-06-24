@@ -1,0 +1,805 @@
+% !TEX program = xelatex
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  8pt,
+  twocolumn]{extarticle}
+\usepackage{xcolor}
+\usepackage[landscape,margin=0.38in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\setlength{\columnsep}{0.32in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\allowdisplaybreaks
+\sloppy
+\emergencystretch=3em
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Formula Sheet Part 1: Foundations, Co-Movement, and
+Portfolios}\label{formula-sheet-part-1-foundations-co-movement-and-portfolios}
+
+This is a two-column topic split from
+\texttt{All\_Formulas\_From\_Chatnotes.md}.
+
+\subsection{Conventions}\label{conventions}
+
+\[
+t,T,h,k,n,p,q,N
+\]
+
+Variables: \(t\) is a time index; \(T\) is sample size or the final
+observed time; \(h\) is a forecast horizon; \(k\) is a lag or number of
+model parameters depending on context; \(n\) is a return horizon;
+\(p,q\) are lag orders; \(N\) is the number of assets.
+
+\[
+F_t
+\]
+
+Variables: \(F_t\) is the information set available at time \(t\).
+
+Returns may be written as decimals or percentages. Check the scale
+before applying VaR or standard deviation formulas.
+
+\subsection{Prices, Returns, and VaR}\label{prices-returns-and-var}
+
+\subsubsection{Simple return}\label{simple-return}
+
+\[
+R_t=\frac{P_t-P_{t-1}}{P_{t-1}}=\frac{P_t}{P_{t-1}}-1
+\]
+
+Variables: \(R_t\) is the simple return from \(t-1\) to \(t\); \(P_t\)
+is the price at time \(t\); \(P_{t-1}\) is the previous price.
+
+\subsubsection{Gross return}\label{gross-return}
+
+\[
+1+R_t=\frac{P_t}{P_{t-1}}
+\]
+
+Variables: \(1+R_t\) is the gross return, the multiplier applied to
+wealth.
+
+\subsubsection{Return with dividends}\label{return-with-dividends}
+
+\[
+R_t=\frac{P_t+D_t-P_{t-1}}{P_{t-1}}
+\]
+
+Variables: \(D_t\) is the dividend paid during period \(t\).
+
+\subsubsection{Log return}\label{log-return}
+
+\[
+r_t=\log(1+R_t)=\log(P_t)-\log(P_{t-1})=\log\left(\frac{P_t}{P_{t-1}}\right)
+\]
+
+Variables: \(r_t\) is the log return; \(\log\) is the natural logarithm.
+
+\subsubsection{Small-return
+approximation}\label{small-return-approximation}
+
+\[
+\log(1+R_t)\approx R_t
+\]
+
+Variables: \(R_t\) is the simple return; the approximation works best
+when \(R_t\) is small.
+
+\subsubsection{Multi-period gross
+return}\label{multi-period-gross-return}
+
+\[
+1+R_t(k)=\prod_{j=0}^{k-1}(1+R_{t-j})
+\]
+
+Variables: \(R_t(k)\) is the \(k\)-period simple return ending at \(t\);
+\(j\) indexes the returns being multiplied.
+
+\subsubsection{Multi-period simple
+return}\label{multi-period-simple-return}
+
+\[
+R_t(k)=\prod_{j=0}^{k-1}(1+R_{t-j})-1
+\]
+
+Variables: \(R_t(k)\) is the total simple return over \(k\) periods.
+
+\subsubsection{Equity curve for one
+dollar}\label{equity-curve-for-one-dollar}
+
+\[
+V_t(k)=\prod_{j=0}^{k-1}(1+R_{t-j})
+\]
+
+Variables: \(V_t(k)\) is the value at time \(t\) of one dollar invested
+over \(k\) periods.
+
+\subsubsection{Wealth growth}\label{wealth-growth}
+
+\[
+V_T=V_0\prod_{t=1}^{T}(1+R_t)
+\]
+
+Variables: \(V_0\) is starting wealth; \(V_T\) is ending wealth after
+\(T\) periods.
+
+\subsubsection{Multi-period log return}\label{multi-period-log-return}
+
+\[
+r_t(k)=\sum_{j=0}^{k-1}r_{t-j}=r_t+r_{t-1}+\cdots+r_{t-k+1}
+\]
+
+Variables: \(r_t(k)\) is the \(k\)-period log return.
+
+\subsubsection{Total log return between two
+prices}\label{total-log-return-between-two-prices}
+
+\[
+r(1,T)=\sum_{t=1}^{T}r_t=\log\left(\frac{P_T}{P_0}\right)
+\]
+
+Variables: \(P_0\) is the starting price; \(P_T\) is the ending price.
+
+\subsubsection{Index log return}\label{index-log-return}
+
+\[
+r_t=\log(Index_t)-\log(Index_{t-1})
+\]
+
+Variables: \(Index_t\) is the index level at time \(t\).
+
+\subsubsection{Excess returns}\label{excess-returns}
+
+\[
+\begin{aligned}
+\text{asset excess return} &= \text{asset return}-R_f \\
+\text{market excess return} &= \text{market return}-R_f
+\end{aligned}
+\]
+
+Variables: \(R_f\) is the risk-free return.
+
+\subsubsection{Market beta
+interpretation}\label{market-beta-interpretation}
+
+\[
+\begin{aligned}
+\beta>1 &\Rightarrow \text{aggressive, more sensitive than the market} \\
+\beta=1 &\Rightarrow \text{tracks the market} \\
+0<\beta<1 &\Rightarrow \text{defensive, less sensitive than the market} \\
+\beta=0 &\Rightarrow \text{unrelated to market movements}
+\end{aligned}
+\]
+
+Variables: \(\beta\) is market sensitivity.
+
+\subsubsection{Market capitalisation}\label{market-capitalisation}
+
+\[
+\text{market capitalisation}=\text{share price}\times\text{number of shares outstanding}
+\]
+
+Variables: market capitalisation is firm size measured using market
+value.
+
+\subsubsection{Book-to-market ratio}\label{book-to-market-ratio}
+
+\[
+\operatorname{BtM}=\frac{\text{book value of equity}}{\text{market value of equity}}
+\]
+
+Variables: \(\operatorname{BtM}\) is the book-to-market ratio.
+
+\subsubsection{Normal return model}\label{normal-return-model}
+
+\[
+R\sim\mathcal N(\mu,\sigma^2)
+\]
+
+Variables: \(R\) is a return; \(\mu\) is mean return; \(\sigma^2\) is
+variance; \(\sigma\) is standard deviation.
+
+\subsubsection{Normal quantile}\label{normal-quantile}
+
+\[
+q_\alpha=\mu+\sigma z_\alpha
+\]
+
+Variables: \(q_\alpha\) is the lower-tail return quantile; \(\alpha\) is
+the tail probability; \(z_\alpha\) is the standard normal cutoff.
+
+\subsubsection{Common normal cutoffs}\label{common-normal-cutoffs}
+
+\[
+\begin{aligned}
+z_{0.05}&=-1.645\\
+z_{0.025}&=-1.96
+\end{aligned}
+\]
+
+Variables: \(z_{0.05}\) is the 5 percent lower-tail cutoff;
+\(z_{0.025}\) is the 2.5 percent lower-tail cutoff.
+
+\subsubsection{One-asset VaR}\label{one-asset-var}
+
+\[
+\operatorname{VaR}_\alpha=|W_0q_\alpha|
+\]
+
+Variables: \(\operatorname{VaR}_\alpha\) is Value at Risk at tail
+probability \(\alpha\); \(W_0\) is the dollar value invested.
+
+\subsubsection{Zero-mean 5 percent normal
+VaR}\label{zero-mean-5-percent-normal-var}
+
+\[
+\begin{aligned}
+q_{0.05}&=-1.645\sigma\\
+\operatorname{VaR}_{0.05}&=|W_0(-1.645\sigma)|
+\end{aligned}
+\]
+
+Variables: \(q_{0.05}\) is the 5 percent return cutoff; \(\sigma\) is
+return volatility.
+
+\subsection{Random Variables and Distribution
+Properties}\label{random-variables-and-distribution-properties}
+
+\subsubsection{Probability under a
+density}\label{probability-under-a-density}
+
+\[
+\Pr(a\le X\le b)=\text{area under }f(x)\text{ from }a\text{ to }b
+\]
+
+Variables: \(X\) is a random variable; \(a,b\) are cutoffs; \(f(x)\) is
+the probability density.
+
+\subsubsection{Normal distribution
+notation}\label{normal-distribution-notation}
+
+\[
+X\sim\mathcal N(\mu,\sigma^2)
+\]
+
+Variables: \(X\) is a random variable; \(\mu\) is the mean; \(\sigma^2\)
+is the variance.
+
+\subsubsection{Expected value}\label{expected-value}
+
+\[
+\mathbb E[X]=\mu
+\]
+
+Variables: \(\mathbb E[\cdot]\) means expected value.
+
+\subsubsection{State-contingent expected
+return}\label{state-contingent-expected-return}
+
+\[
+\mathbb E(R)=\sum_s R_s\Pr(S=s)
+\]
+
+Variables: \(R_s\) is the return in state \(s\); \(S\) is the state
+variable.
+
+\subsubsection{Expected value linearity}\label{expected-value-linearity}
+
+\[
+\begin{aligned}
+\mathbb E(a)&=a\\
+\mathbb E(aX)&=a\mathbb E(X)\\
+\mathbb E(a+X)&=a+\mathbb E(X)\\
+\mathbb E(X+Y)&=\mathbb E(X)+\mathbb E(Y)
+\end{aligned}
+\]
+
+Variables: \(a\) is a constant; \(X,Y\) are random variables.
+
+\subsubsection{Variance}\label{variance}
+
+\[
+\operatorname{Var}(X)=\mathbb E[(X-\mu)^2]
+\]
+
+Variables: \(\operatorname{Var}(X)\) is the variance of \(X\).
+
+\subsubsection{Standard deviation}\label{standard-deviation}
+
+\[
+\operatorname{sd}(X)=\sqrt{\operatorname{Var}(X)}
+\]
+
+Variables: \(\operatorname{sd}(X)\) is the standard deviation of \(X\).
+
+\subsubsection{Variance rules}\label{variance-rules}
+
+\[
+\begin{aligned}
+\operatorname{Var}(a)&=0\\
+\operatorname{Var}(aX)&=a^2\operatorname{Var}(X)\\
+\operatorname{Var}(a+X)&=\operatorname{Var}(X)
+\end{aligned}
+\]
+
+Variables: \(a\) is a constant.
+
+\subsubsection{Variance of a sum}\label{variance-of-a-sum}
+
+\[
+\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y)
+\]
+
+Variables: \(\operatorname{Cov}(X,Y)\) is covariance between \(X\) and
+\(Y\).
+
+\subsubsection{Standardising a normal
+variable}\label{standardising-a-normal-variable}
+
+\[
+Z=\frac{X-\mu}{\sigma}\sim\mathcal N(0,1)
+\]
+
+Variables: \(Z\) is a standard normal variable; \(\sigma\) is the
+standard deviation of \(X\).
+
+\subsubsection{Probability conversion after
+standardising}\label{probability-conversion-after-standardising}
+
+\[
+\Pr(X>a)=\Pr\left(\frac{X-\mu}{\sigma}>\frac{a-\mu}{\sigma}\right)=\Pr(Z>z)
+\]
+
+Variables: \(z=(a-\mu)/\sigma\) is the standardised cutoff.
+
+\subsubsection{Lower-tail normal
+probability}\label{lower-tail-normal-probability}
+
+\[
+\Pr(r_t<x)=\Pr\left(Z<\frac{x-\mu}{\sigma}\right)
+\]
+
+Variables: \(r_t\) is a return; \(x\) is a cutoff.
+
+\subsubsection{Return scale convention}\label{return-scale-convention}
+
+\[
+\begin{aligned}
+0.01&=1\text{ percent, if returns are decimals}\\
+1&=1\text{ percent, if returns are stored as percentage points}
+\end{aligned}
+\]
+
+Variables: the same economic return can be represented on different
+numeric scales.
+
+\subsubsection{Sample mean}\label{sample-mean}
+
+\[
+\bar r=\frac{1}{T}\sum_{t=1}^{T}r_t
+\]
+
+Variables: \(\bar r\) is the sample average return.
+
+\subsubsection{Sample variance and standard
+deviation}\label{sample-variance-and-standard-deviation}
+
+\[
+s^2=\frac{1}{T-1}\sum_{t=1}^{T}(r_t-\bar r)^2,\qquad s=\sqrt{s^2}
+\]
+
+Variables: \(s^2\) is sample variance; \(s\) is sample standard
+deviation.
+
+\subsubsection{Skewness and kurtosis}\label{skewness-and-kurtosis}
+
+\[
+\text{skewness}=\frac{\mathbb E[(r_t-\mu)^3]}{\sigma^3},\qquad
+\text{kurtosis}=\frac{\mathbb E[(r_t-\mu)^4]}{\sigma^4}
+\]
+
+Variables: skewness measures asymmetry; kurtosis measures tail
+thickness.
+
+\subsection{Co-Movement, Conditional Moments, and
+Factors}\label{co-movement-conditional-moments-and-factors}
+
+\subsubsection{Joint probability}\label{joint-probability}
+
+\[
+\Pr(X=x,Y=y)
+\]
+
+Variables: \(X,Y\) are random variables; \(x,y\) are outcomes.
+
+\subsubsection{Marginal probability}\label{marginal-probability}
+
+\[
+\Pr(X=x)=\sum_y\Pr(X=x,Y=y)
+\]
+
+Variables: the sum is over all possible values of \(Y\).
+
+\subsubsection{Conditional probability}\label{conditional-probability}
+
+\[
+\Pr(X=x\mid Y=y)=\frac{\Pr(X=x,Y=y)}{\Pr(Y=y)}
+\]
+
+Variables: \(\Pr(X=x\mid Y=y)\) is the probability of \(X=x\) given
+\(Y=y\).
+
+\subsubsection{Independence}\label{independence}
+
+\[
+\Pr(X=x\mid Y=y)=\Pr(X=x)
+\]
+
+Variables: independence means knowing \(Y\) does not change the
+probability distribution of \(X\).
+
+\subsubsection{Conditional expectation}\label{conditional-expectation}
+
+\[
+\mathbb E[X\mid Y]
+\]
+
+Variables: \(\mathbb E[X\mid Y]\) is the expected value of \(X\)
+conditional on \(Y\).
+
+\subsubsection{Law of iterated
+expectations}\label{law-of-iterated-expectations}
+
+\[
+\mathbb E[X]=\mathbb E[\mathbb E[X\mid Y]]
+\]
+
+Variables: \(Y\) is the conditioning variable.
+
+\subsubsection{Conditional variance}\label{conditional-variance}
+
+\[
+\operatorname{Var}(Y\mid X)=\mathbb E[(Y-\mathbb E[Y\mid X])^2\mid X]
+\]
+
+Variables: \(\operatorname{Var}(Y\mid X)\) is remaining uncertainty
+about \(Y\) after conditioning on \(X\).
+
+\subsubsection{Law of total variance}\label{law-of-total-variance}
+
+\[
+\operatorname{Var}(Y)=\mathbb E[\operatorname{Var}(Y\mid X)]+\operatorname{Var}(\mathbb E[Y\mid X])
+\]
+
+Variables: the first term is average conditional variance; the second is
+variance of conditional means.
+
+\subsubsection{Information reduces conditional
+variance}\label{information-reduces-conditional-variance}
+
+\[
+\operatorname{Var}(Y\mid \text{information})<\operatorname{Var}(Y)
+\]
+
+Variables: information is any conditioning set that improves prediction.
+
+\subsubsection{Covariance}\label{covariance}
+
+\[
+\operatorname{Cov}(X,Y)=\mathbb E[(X-\mathbb E[X])(Y-\mathbb E[Y])]
+\]
+
+Variables: covariance measures linear co-movement.
+
+\subsubsection{State covariance}\label{state-covariance}
+
+\[
+\operatorname{Cov}(R_A,R_B)=\sum_s p_s(R_{A,s}-\mu_A)(R_{B,s}-\mu_B)
+\]
+
+Variables: \(R_A,R_B\) are asset returns; \(p_s\) is the probability of
+state \(s\); \(\mu_A,\mu_B\) are expected returns.
+
+\subsubsection{Covariance from
+correlation}\label{covariance-from-correlation}
+
+\[
+\operatorname{Cov}(R_A,R_B)=\rho_{AB}\sigma_A\sigma_B
+\]
+
+Variables: \(\rho_{AB}\) is the correlation between assets A and B;
+\(\sigma_A,\sigma_B\) are standard deviations.
+
+\subsubsection{Correlation}\label{correlation}
+
+\[
+\operatorname{Corr}(X,Y)=\frac{\operatorname{Cov}(X,Y)}{\operatorname{sd}(X)\operatorname{sd}(Y)}
+\]
+
+Variables: \(\operatorname{Corr}(X,Y)\) is the standardised covariance.
+
+\subsubsection{Correlation from
+covariance}\label{correlation-from-covariance}
+
+\[
+\rho_{AB}=\frac{\operatorname{Cov}(R_A,R_B)}{\sigma_A\sigma_B}
+\]
+
+Variables: \(\rho_{AB}\) is the correlation coefficient.
+
+\subsubsection{Covariance sign
+interpretation}\label{covariance-sign-interpretation}
+
+\[
+\begin{aligned}
+\operatorname{Cov}(X,Y)>0&\Rightarrow X\text{ and }Y\text{ tend to move together}\\
+\operatorname{Cov}(X,Y)<0&\Rightarrow X\text{ and }Y\text{ tend to move oppositely}\\
+\operatorname{Cov}(X,Y)=0&\Rightarrow \text{no linear co-movement}
+\end{aligned}
+\]
+
+Variables: the sign of covariance gives direction of linear co-movement.
+
+\subsubsection{Group mean return}\label{group-mean-return}
+
+\[
+\bar r_g=\frac{1}{T}\sum_{t=1}^{T}r_{g,t}
+\]
+
+Variables: \(\bar r_g\) is the mean return for group \(g\); \(r_{g,t}\)
+is group return at time \(t\).
+
+\subsubsection{Generic factor long-short
+return}\label{generic-factor-long-short-return}
+
+\[
+r_{\text{factor},t}=r_{\text{long},t}-r_{\text{short},t}
+\]
+
+Variables: \(r_{\text{long},t}\) is the return on the long leg;
+\(r_{\text{short},t}\) is the return on the short leg.
+
+\subsubsection{SMB factor}\label{smb-factor}
+
+\[
+SMB_t=R_{\text{small},t}-R_{\text{big},t}
+\]
+
+Variables: \(SMB_t\) is Small Minus Big at time \(t\).
+
+\subsubsection{HML factor}\label{hml-factor}
+
+\[
+HML_t=R_{\text{high BtM},t}-R_{\text{low BtM},t}
+\]
+
+Variables: \(HML_t\) is High Minus Low book-to-market at time \(t\).
+
+\subsubsection{Fama-French two-by-three SMB
+construction}\label{fama-french-two-by-three-smb-construction}
+
+\[
+SMB=\operatorname{average}(S/L,S/N,S/H)-\operatorname{average}(B/L,B/N,B/H)
+\]
+
+Variables: \(S\) means small; \(B\) means big; \(L,N,H\) mean low,
+neutral, and high book-to-market portfolios.
+
+\subsubsection{Fama-French two-by-three HML
+construction}\label{fama-french-two-by-three-hml-construction}
+
+\[
+HML=\operatorname{average}(S/H,B/H)-\operatorname{average}(S/L,B/L)
+\]
+
+Variables: \(S/H\) is the small high-BtM portfolio; \(B/H\) is the big
+high-BtM portfolio; \(S/L,B/L\) are low-BtM portfolios.
+
+\subsection{Portfolio Risk and Sharpe
+Ratios}\label{portfolio-risk-and-sharpe-ratios}
+
+\subsubsection{Two-asset portfolio
+return}\label{two-asset-portfolio-return}
+
+\[
+R_p=wR_1+(1-w)R_2
+\]
+
+Variables: \(R_p\) is portfolio return; \(w\) is the weight in asset 1;
+\(R_1,R_2\) are asset returns.
+
+\subsubsection{Two-asset expected
+return}\label{two-asset-expected-return}
+
+\[
+\mathbb E[R_p]=w\mathbb E[R_1]+(1-w)\mathbb E[R_2]
+\]
+
+Variables: \(\mathbb E[R_p]\) is expected portfolio return.
+
+\subsubsection{Two-asset expected return using
+means}\label{two-asset-expected-return-using-means}
+
+\[
+\mu_p=w\mu_1+(1-w)\mu_2
+\]
+
+Variables: \(\mu_p\) is portfolio mean return; \(\mu_1,\mu_2\) are asset
+mean returns.
+
+\subsubsection{Two-asset portfolio
+variance}\label{two-asset-portfolio-variance}
+
+\[
+\operatorname{Var}(R_p)=w^2\sigma_1^2+(1-w)^2\sigma_2^2+2w(1-w)\sigma_{12}
+\]
+
+Variables: \(\sigma_1^2,\sigma_2^2\) are asset variances;
+\(\sigma_{12}\) is covariance.
+
+\subsubsection{Two-asset portfolio variance using explicit
+weights}\label{two-asset-portfolio-variance-using-explicit-weights}
+
+\[
+\sigma_p^2=w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\sigma_{12}
+\]
+
+Variables: \(w_1,w_2\) are portfolio weights; \(\sigma_p^2\) is
+portfolio variance.
+
+\subsubsection{Covariance from
+correlation}\label{covariance-from-correlation-1}
+
+\[
+\sigma_{12}=\rho_{12}\sigma_1\sigma_2
+\]
+
+Variables: \(\rho_{12}\) is correlation between assets 1 and 2.
+
+\subsubsection{Sharpe ratio}\label{sharpe-ratio}
+
+\[
+SR=\frac{\operatorname{mean\ return}-\text{risk-free rate}}{\text{standard deviation}}
+\]
+
+Variables: \(SR\) is the Sharpe ratio.
+
+\subsubsection{Asset Sharpe ratio}\label{asset-sharpe-ratio}
+
+\[
+SR_i=\frac{\mu_i-r_f}{\sigma_i}
+\]
+
+Variables: \(\mu_i\) is expected return on asset \(i\); \(r_f\) is the
+risk-free rate; \(\sigma_i\) is standard deviation.
+
+\subsubsection{Portfolio Sharpe ratio}\label{portfolio-sharpe-ratio}
+
+\[
+SR_p=\frac{\mu_p-r_f}{\sigma_p}
+\]
+
+Variables: \(SR_p\) is portfolio Sharpe ratio; \(\sigma_p\) is portfolio
+standard deviation.
+
+\subsubsection{Two-asset GMV weight}\label{two-asset-gmv-weight}
+
+\[
+w_1^{GMV}=\frac{\sigma_2^2-\sigma_{12}}{\sigma_1^2+\sigma_2^2-2\sigma_{12}}
+\]
+
+Variables: \(w_1^{GMV}\) is the global minimum variance weight in asset
+1.
+
+\subsubsection{Second GMV weight}\label{second-gmv-weight}
+
+\[
+w_2^{GMV}=1-w_1^{GMV}
+\]
+
+Variables: \(w_2^{GMV}\) is the GMV weight in asset 2.
+
+\subsubsection{Regression trick for GMV
+weights}\label{regression-trick-for-gmv-weights}
+
+\[
+r_{2,t}=\beta_0+\beta_1(r_{2,t}-r_{1,t})+e_t
+\]
+
+Variables: \(r_{1,t},r_{2,t}\) are asset returns; \(\beta_0,\beta_1\)
+are regression coefficients; \(e_t\) is the error.
+
+\[
+\beta_1=w_1,\qquad w_2=1-\beta_1
+\]
+
+Variables: \(\beta_1\) gives the weight in asset 1 under the regression
+trick.
+
+\subsubsection{Regression slope form used in
+practice}\label{regression-slope-form-used-in-practice}
+
+\[
+b=\frac{\operatorname{Cov}(R_1,R_2)}{\operatorname{Var}(R_2)}
+\]
+
+Variables: \(b\) is a regression slope in the practice note.
+
+\subsubsection{Many-asset GMV weights}\label{many-asset-gmv-weights}
+
+\[
+\mathbf w^{GMV}=\frac{\Sigma^{-1}\mathbf 1}{\mathbf 1'\Sigma^{-1}\mathbf 1}
+\]
+
+Variables: \(\mathbf w^{GMV}\) is the GMV weight vector; \(\Sigma\) is
+the covariance matrix; \(\mathbf 1\) is a vector of ones.
+
+\subsubsection{Portfolio return from GMV
+weights}\label{portfolio-return-from-gmv-weights}
+
+\[
+r_{p,t}=w_1r_{1,t}+(1-w_1)r_{2,t}
+\]
+
+Variables: \(r_{p,t}\) is portfolio return at time \(t\).
+
+\end{document}

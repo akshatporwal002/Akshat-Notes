@@ -1,0 +1,1007 @@
+% !TEX program = xelatex
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  8pt,
+  twocolumn]{extarticle}
+\usepackage{xcolor}
+\usepackage[landscape,margin=0.38in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\setlength{\columnsep}{0.32in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\allowdisplaybreaks
+\sloppy
+\emergencystretch=3em
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Formula Sheet Part 4: GARCH, Risk Forecasting, and Exam
+Templates}\label{formula-sheet-part-4-garch-risk-forecasting-and-exam-templates}
+
+This is a two-column topic split from
+\texttt{All\_Formulas\_From\_Chatnotes.md}.
+
+\subsection{Conventions}\label{conventions}
+
+\[
+t,T,h,k,n,p,q,N
+\]
+
+Variables: \(t\) is a time index; \(T\) is sample size or the final
+observed time; \(h\) is a forecast horizon; \(k\) is a lag or number of
+model parameters depending on context; \(n\) is a return horizon;
+\(p,q\) are lag orders; \(N\) is the number of assets.
+
+\[
+F_t
+\]
+
+Variables: \(F_t\) is the information set available at time \(t\).
+
+Returns may be written as decimals or percentages. Check the scale
+before applying VaR or standard deviation formulas.
+
+\subsection{GARCH, Forecasting Volatility, and Model
+Comparison}\label{garch-forecasting-volatility-and-model-comparison}
+
+\subsubsection{ARCH(q) variance equation}\label{archq-variance-equation}
+
+\[
+\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2+\cdots+\alpha_q\epsilon_{t-q}^2
+\]
+
+Variables: this is the pure ARCH variance equation.
+
+\subsubsection{GARCH(p,q)}\label{garchpq}
+
+\[
+\begin{aligned}
+\epsilon_t&=\sigma_tu_t,\qquad u_t\sim\mathrm{iid}(0,1)\\
+\sigma_t^2&=\alpha_0+\alpha_1\epsilon_{t-1}^2+\cdots+\alpha_q\epsilon_{t-q}^2\\
+&\quad+\beta_1\sigma_{t-1}^2+\cdots+\beta_p\sigma_{t-p}^2
+\end{aligned}
+\]
+
+Variables: \(\beta_j\) are coefficients on lagged conditional variances;
+\(p\) is GARCH order; \(q\) is ARCH order.
+
+\subsubsection{GARCH(1,1)}\label{garch11}
+
+\[
+\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2
+\]
+
+Variables: \(\alpha_1\) is the shock reaction; \(\beta_1\) is volatility
+persistence from lagged variance.
+
+\subsubsection{GARCH(1,1) conditions}\label{garch11-conditions}
+
+\[
+\alpha_0>0,\qquad \alpha_1\ge0,\qquad \beta_1\ge0,\qquad \alpha_1+\beta_1<1
+\]
+
+Variables: \(\alpha_1+\beta_1<1\) gives finite unconditional variance
+and mean reversion.
+
+\subsubsection{GARCH persistence}\label{garch-persistence}
+
+\[
+\rho=\alpha_1+\beta_1
+\]
+
+Variables: \(\rho\) measures persistence of volatility shocks.
+
+\subsubsection{GARCH long-run variance and
+volatility}\label{garch-long-run-variance-and-volatility}
+
+\[
+\operatorname{Var}(\epsilon_t)=\bar\sigma^2=\frac{\alpha_0}{1-\alpha_1-\beta_1},\qquad
+\bar\sigma=\sqrt{\frac{\alpha_0}{1-\alpha_1-\beta_1}}
+\]
+
+Variables: \(\bar\sigma^2\) is long-run variance; \(\bar\sigma\) is
+long-run volatility.
+
+\subsubsection{GARCH conditional and unconditional
+moments}\label{garch-conditional-and-unconditional-moments}
+
+\[
+\begin{aligned}
+\mathbb E(\epsilon_t\mid F_{t-1})&=0\\
+\operatorname{Var}(\epsilon_t\mid F_{t-1})&=\sigma_t^2\\
+\operatorname{Cov}(\epsilon_t,\epsilon_{t-k}\mid F_{t-1})&=0
+\end{aligned}
+\]
+
+Variables: conditional variance changes over time even when conditional
+mean is zero.
+
+\[
+\begin{aligned}
+\mathbb E(\epsilon_t)&=0\\
+\operatorname{Cov}(\epsilon_t,\epsilon_{t-k})&=0\\
+\operatorname{Var}(\epsilon_t)&=\frac{\alpha_0}{1-\alpha_1-\beta_1}
+\end{aligned}
+\]
+
+Variables: standard GARCH errors are uncorrelated but not independent in
+squares.
+
+\subsubsection{Normal GARCH innovation
+skewness}\label{normal-garch-innovation-skewness}
+
+\[
+u_t\sim\mathrm{iid}\mathcal N(0,1),\qquad \epsilon_t\mid F_{t-1}\sim\mathcal N(0,\sigma_t^2)
+\]
+
+Variables: conditional normality makes conditional skewness zero.
+
+\[
+\mathbb E(\epsilon_t^3\mid F_{t-1})=0,\qquad
+\mathbb E(\epsilon_t^3)=\mathbb E[\mathbb E(\epsilon_t^3\mid F_{t-1})]=0
+\]
+
+Variables: the unconditional third moment is zero under symmetric normal
+innovations.
+
+\[
+\text{skewness}=\frac{\mathbb E(\epsilon_t^3)}{[\operatorname{Var}(\epsilon_t)]^{3/2}}=0
+\]
+
+Variables: skewness is zero for standard symmetric GARCH innovations.
+
+\subsubsection{Mean equation plus GARCH volatility
+equation}\label{mean-equation-plus-garch-volatility-equation}
+
+\[
+\begin{aligned}
+r_t&=c+\phi_1r_{t-1}+\epsilon_t\\
+\sigma_t^2&=\alpha_0+\alpha_1\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2
+\end{aligned}
+\]
+
+Variables: \(c,\phi_1\) define the mean equation; the second line
+defines volatility.
+
+\subsubsection{Constant-mean return
+equation}\label{constant-mean-return-equation}
+
+\[
+r_t=\mu+\epsilon_t
+\]
+
+Variables: \(\mu\) is constant mean return.
+
+\subsubsection{Mean-adjusted AR form}\label{mean-adjusted-ar-form}
+
+\[
+r_t-\mu=\phi(r_{t-1}-\mu)+\epsilon_t
+\]
+
+Variables: \(\phi\) is the AR coefficient around mean \(\mu\).
+
+\[
+r_t=c+\phi r_{t-1}+\epsilon_t,\qquad c=\mu(1-\phi)
+\]
+
+Variables: \(c\) is the equivalent intercept.
+
+\[
+r_t=\mu+\phi(r_{t-1}-\mu)+\epsilon_t=\mu(1-\phi)+\phi r_{t-1}+\epsilon_t
+\]
+
+Variables: these are algebraically equivalent AR(1) mean forms.
+
+\subsubsection{AR(1)-GARCH(1,1) one-step mean
+forecast}\label{ar1-garch11-one-step-mean-forecast}
+
+\[
+\mathbb E(r_{T+1}\mid F_T)=\hat r_{T+1}=c+\phi r_T
+\]
+
+Variables: \(r_T\) is the latest known return.
+
+\subsubsection{GARCH one-step variance
+forecast}\label{garch-one-step-variance-forecast}
+
+\[
+\hat\sigma_{T+1}^2=\mathbb E(\sigma_{T+1}^2\mid F_T)=\alpha_0+\alpha_1\epsilon_T^2+\beta_1\sigma_T^2
+\]
+
+Variables: \(\epsilon_T^2\) is the latest squared shock; \(\sigma_T^2\)
+is the latest conditional variance.
+
+\subsubsection{Prediction interval using forecast
+variance}\label{prediction-interval-using-forecast-variance}
+
+\[
+r_{T+1}\mid F_T\sim\mathcal N(\text{mean forecast},\text{variance forecast})
+\]
+
+Variables: mean forecast is \(\hat r_{T+1}\); variance forecast is
+\(\hat\sigma_{T+1}^2\).
+
+\[
+\text{mean forecast}\pm1.96\sqrt{\text{variance forecast}}
+\]
+
+Variables: \(1.96\) is the approximate 95 percent normal cutoff.
+
+\subsubsection{Likelihood-ratio comparison of ARCH and
+GARCH}\label{likelihood-ratio-comparison-of-arch-and-garch}
+
+\[
+LR=2(LL_{GARCH}-LL_{ARCH})=2(\ell_1-\ell_0)
+\]
+
+Variables: \(LL_{GARCH}\) is the unrestricted log likelihood;
+\(LL_{ARCH}\) is the restricted log likelihood.
+
+\[
+LR\sim\chi_p^2
+\]
+
+Variables: \(p\) is the number of restrictions or extra parameters
+tested.
+
+\subsubsection{Model comparison rules}\label{model-comparison-rules}
+
+\[
+\begin{aligned}
+\text{higher log likelihood}&\Rightarrow \text{better}\\
+\text{lower AIC/BIC}&\Rightarrow \text{better}\\
+\text{squared standardised residuals with no autocorrelation}&\Rightarrow \text{better diagnostics}
+\end{aligned}
+\]
+
+Variables: these compare fitted volatility models.
+
+\subsection{Asymmetric Volatility
+Models}\label{asymmetric-volatility-models}
+
+\subsubsection{Standard GARCH symmetry}\label{standard-garch-symmetry}
+
+\[
+\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2
+\]
+
+Variables: squaring removes the sign of the shock.
+
+\[
+(+a)^2=(-a)^2=a^2
+\]
+
+Variables: \(a\) is any shock size.
+
+\subsubsection{GJR-GARCH model}\label{gjr-garch-model}
+
+\[
+\begin{aligned}
+r_t&=\mu+\epsilon_t\\
+\epsilon_t&=\sigma_tu_t\\
+\sigma_t^2&=\alpha_0+\alpha_1\epsilon_{t-1}^2+\lambda I_{t-1}\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2
+\end{aligned}
+\]
+
+Variables: \(\lambda\) is the leverage/asymmetry coefficient;
+\(I_{t-1}\) is a bad-news indicator.
+
+\subsubsection{GJR indicator}\label{gjr-indicator}
+
+\[
+I_{t-1}=
+\begin{cases}
+1,&\epsilon_{t-1}\le0\\
+0,&\text{otherwise}
+\end{cases}
+\]
+
+Variables: the indicator switches on for non-positive shocks.
+
+\subsubsection{GJR good-news and bad-news
+effects}\label{gjr-good-news-and-bad-news-effects}
+
+\[
+\begin{aligned}
+\epsilon_{t-1}>0&:\quad \text{effect}=\alpha_1\epsilon_{t-1}^2\\
+\epsilon_{t-1}\le0&:\quad \text{effect}=(\alpha_1+\lambda)\epsilon_{t-1}^2
+\end{aligned}
+\]
+
+Variables: good news uses only \(\alpha_1\); bad news uses
+\(\alpha_1+\lambda\).
+
+\[
+\text{good news effect}=\alpha_1,\qquad \text{bad news effect}=\alpha_1+\lambda
+\]
+
+Variables: a positive \(\lambda\) means bad news has a larger variance
+effect in GJR.
+
+\subsubsection{GJR leverage test}\label{gjr-leverage-test}
+
+\[
+\begin{aligned}
+H_0&:\lambda=0\\
+H_1&:\lambda\ne0\\
+t&=\frac{\hat\lambda}{\operatorname{se}(\hat\lambda)}
+\end{aligned}
+\]
+
+Variables: \(\hat\lambda\) is the estimated leverage coefficient.
+
+\[
+|t|>1.96\Rightarrow \text{reject }H_0\text{ at approximately 5 percent}
+\]
+
+Variables: rejecting means statistically significant asymmetry.
+
+\subsubsection{GJR parameter conditions}\label{gjr-parameter-conditions}
+
+\[
+\alpha_0>0,\qquad \alpha_1\ge0,\qquad \beta_1\ge0,\qquad \alpha_1+\lambda\ge0
+\]
+
+Variables: these keep conditional variance non-negative for good and bad
+news.
+
+\subsubsection{GJR unconditional
+variance}\label{gjr-unconditional-variance}
+
+\[
+\operatorname{Var}(\epsilon_t)=\frac{\alpha_0}{1-\alpha_1-\beta_1-\lambda/2}
+\]
+
+Variables: \(\lambda/2\) appears when positive and negative shocks are
+equally likely.
+
+\subsubsection{EGARCH model}\label{egarch-model}
+
+\[
+\log(\sigma_t^2)=\omega+\alpha_1u_{t-1}+\gamma_1(|u_{t-1}|-\mathbb E|u_{t-1}|)+\beta_1\log(\sigma_{t-1}^2)
+\]
+
+Variables: \(\omega\) is intercept; \(\alpha_1\) captures signed shock
+asymmetry; \(\gamma_1\) captures magnitude effects; \(\beta_1\) captures
+log-volatility persistence.
+
+\subsubsection{EGARCH standardised
+shock}\label{egarch-standardised-shock}
+
+\[
+u_{t-1}=\frac{\epsilon_{t-1}}{\sigma_{t-1}}
+\]
+
+Variables: \(u_{t-1}\) standardises the shock by conditional volatility.
+
+\subsubsection{Expected absolute standard normal
+shock}\label{expected-absolute-standard-normal-shock}
+
+\[
+\mathbb E|u_t|=\sqrt{\frac{2}{\pi}}\approx0.7979
+\]
+
+Variables: this value is used when \(u_t\) is standard normal.
+
+\subsubsection{EGARCH positivity}\label{egarch-positivity}
+
+\[
+\log(\sigma_t^2)\text{ is modelled }\Rightarrow \sigma_t^2\text{ is automatically positive}
+\]
+
+Variables: modelling log variance avoids non-negativity constraints on
+coefficients.
+
+\subsubsection{EGARCH leverage sign in the
+notes}\label{egarch-leverage-sign-in-the-notes}
+
+\[
+\lambda<0\Rightarrow \text{negative shocks raise volatility more than positive shocks}
+\]
+
+Variables: \(\lambda\) is the asymmetry coefficient in the note's EGARCH
+interpretation.
+
+\subsubsection{News impact curve for
+ARCH(1)}\label{news-impact-curve-for-arch1}
+
+\[
+NIC(\epsilon_{t-1})=\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2
+\]
+
+Variables: \(NIC\) maps yesterday's shock into today's conditional
+variance.
+
+\subsubsection{News impact curve for
+GARCH(1,1)}\label{news-impact-curve-for-garch11}
+
+\[
+\bar\sigma^2=\frac{\alpha_0}{1-\alpha_1-\beta_1}
+\]
+
+Variables: \(\bar\sigma^2\) is the variance level used to hold lagged
+variance fixed.
+
+\[
+NIC(\epsilon_{t-1})=\alpha_0+\alpha_1\epsilon_{t-1}^2+\beta_1\bar\sigma^2
+\]
+
+Variables: the curve varies with \(\epsilon_{t-1}\) while holding
+\(\sigma_{t-1}^2=\bar\sigma^2\).
+
+\[
+NIC(\epsilon_{t-1})=\alpha_0+\beta_1\frac{\alpha_0}{1-\alpha_1-\beta_1}+\alpha_1\epsilon_{t-1}^2
+\]
+
+Variables: this substitutes the long-run variance into the NIC.
+
+\subsubsection{News impact curve for
+GJR-GARCH}\label{news-impact-curve-for-gjr-garch}
+
+\[
+A=\alpha_0+\beta_1\frac{\alpha_0}{1-\alpha_1-\lambda/2-\beta_1}
+\]
+
+Variables: \(A\) is the intercept-like NIC component after fixing lagged
+variance at the GJR long-run variance.
+
+\[
+\begin{aligned}
+\epsilon_{t-1}>0&:\quad \sigma_t^2=A+\alpha_1\epsilon_{t-1}^2\\
+\epsilon_{t-1}\le0&:\quad \sigma_t^2=A+(\alpha_1+\lambda)\epsilon_{t-1}^2
+\end{aligned}
+\]
+
+Variables: the two branches show asymmetric curvature for good and bad
+news.
+
+\subsection{IGARCH, RiskMetrics, MA, and
+ARMA}\label{igarch-riskmetrics-ma-and-arma}
+
+\subsubsection{IGARCH persistence}\label{igarch-persistence}
+
+\[
+\alpha_1+\beta_1=1
+\]
+
+Variables: IGARCH has unit volatility persistence.
+
+\subsubsection{IGARCH(1,1) from GARCH(1,1)}\label{igarch11-from-garch11}
+
+\[
+\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2,\qquad \alpha_1=1-\beta_1
+\]
+
+Variables: the second condition enforces \(\alpha_1+\beta_1=1\).
+
+\subsubsection{IGARCH with zero
+intercept}\label{igarch-with-zero-intercept}
+
+\[
+\alpha_0=0
+\]
+
+Variables: RiskMetrics/EWMA uses zero variance intercept.
+
+\[
+\sigma_t^2=(1-\beta_1)\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2
+\]
+
+Variables: \(\beta_1\) is the decay weight on old variance.
+
+\subsubsection{IGARCH using returns as
+shocks}\label{igarch-using-returns-as-shocks}
+
+\[
+\sigma_t^2=(1-\beta_1)r_{t-1}^2+\beta_1\sigma_{t-1}^2
+\]
+
+Variables: this uses \(r_{t-1}\) as the shock when the conditional mean
+is zero.
+
+\subsubsection{IGARCH unconditional variance
+issue}\label{igarch-unconditional-variance-issue}
+
+\[
+\operatorname{Var}(\epsilon_t)=\frac{\alpha_0}{1-\alpha_1-\beta_1},\qquad \alpha_1+\beta_1=1
+\]
+
+Variables: the denominator is zero, so stationary unconditional variance
+is not finite.
+
+\subsubsection{RiskMetrics conditional normal
+model}\label{riskmetrics-conditional-normal-model}
+
+\[
+r_t\mid F_{t-1}\sim\mathcal N(0,\sigma_t^2)
+\]
+
+Variables: RiskMetrics often assumes zero conditional mean.
+
+\subsubsection{RiskMetrics variance
+update}\label{riskmetrics-variance-update}
+
+\[
+\sigma_t^2=\lambda\sigma_{t-1}^2+(1-\lambda)r_{t-1}^2
+\]
+
+Variables: \(\lambda\) is the decay factor; \(1-\lambda\) is the latest
+squared-return weight.
+
+\subsubsection{RiskMetrics one-step
+forecast}\label{riskmetrics-one-step-forecast}
+
+\[
+\sigma_{T+1}^2=\lambda\sigma_T^2+(1-\lambda)r_T^2
+\]
+
+Variables: \(r_T\) is the latest observed return.
+
+\subsubsection{Conditional-normal VaR}\label{conditional-normal-var}
+
+\[
+r_{T+1}\mid F_T\sim\mathcal N(\mu_{T+1\mid T},\sigma_{T+1}^2)
+\]
+
+Variables: \(\mu_{T+1\mid T}\) is the conditional mean forecast.
+
+\[
+q_\alpha=\mu_{T+1\mid T}+\sigma_{T+1}z_\alpha
+\]
+
+Variables: \(q_\alpha\) is the conditional return quantile.
+
+\[
+\operatorname{VaR}_\alpha=|W_0q_\alpha|
+\]
+
+Variables: \(W_0\) is dollar exposure.
+
+\[
+q_{0.05}=-1.645\sigma_{T+1},\qquad \operatorname{VaR}_{0.05}=|W_0(-1.645\sigma_{T+1})|
+\]
+
+Variables: this zero-mean form uses \(z_{0.05}=-1.645\).
+
+\subsubsection{AR-GARCH VaR model}\label{ar-garch-var-model}
+
+\[
+\begin{aligned}
+r_t&=\mu_t+\epsilon_t\\
+\mu_t&=c+\phi_1r_{t-1}+\cdots+\phi_pr_{t-p}\\
+\sigma_t^2&=\alpha_0+\alpha_1\epsilon_{t-1}^2+\beta_1\sigma_{t-1}^2
+\end{aligned}
+\]
+
+Variables: \(\mu_t\) is conditional mean; \(p\) is AR order.
+
+\subsubsection{AR-GARCH mean forecast}\label{ar-garch-mean-forecast}
+
+\[
+\mu_{T+1\mid T}=c+\phi_1r_T+\cdots+\phi_pr_{T-p+1}
+\]
+
+Variables: all returns on the right are known at time \(T\).
+
+\subsubsection{AR-GARCH VaR quantile}\label{ar-garch-var-quantile}
+
+\[
+q_{0.05}=\mu_{T+1\mid T}-1.645\sigma_{T+1},\qquad \operatorname{VaR}_{0.05}=|W_0q_{0.05}|
+\]
+
+Variables: \(\sigma_{T+1}=\sqrt{\sigma_{T+1}^2}\).
+
+\subsubsection{Persistence versus volatility
+level}\label{persistence-versus-volatility-level}
+
+\[
+\text{persistence}=\alpha_1+\beta_1,\qquad \text{long-run variance}=\frac{\alpha_0}{1-\alpha_1-\beta_1}
+\]
+
+Variables: persistence controls shock decay; \(\alpha_0\) also affects
+the volatility level.
+
+\subsubsection{MA(1) model}\label{ma1-model}
+
+\[
+y_t=\phi_0+u_t+\theta_1u_{t-1}
+\]
+
+Variables: \(\phi_0\) is mean/intercept; \(\theta_1\) is MA coefficient;
+\(u_t\) is shock.
+
+\[
+u_t\sim\mathrm{iid}(0,\sigma_u^2)
+\]
+
+Variables: \(\sigma_u^2\) is innovation variance.
+
+\subsubsection{MA(1) mean, variance, and
+autocorrelation}\label{ma1-mean-variance-and-autocorrelation}
+
+\[
+\mathbb E(y_t)=\phi_0,\qquad \operatorname{Var}(y_t)=(1+\theta_1^2)\sigma_u^2
+\]
+
+Variables: MA(1) variance depends on \(\theta_1^2\).
+
+\[
+\rho_1=\frac{\theta_1}{1+\theta_1^2},\qquad \rho_k=0\text{ for }k>1
+\]
+
+Variables: MA(1) autocorrelation cuts off after lag 1.
+
+\subsubsection{MA(1) forecasts}\label{ma1-forecasts}
+
+\[
+y_{T+1}=\phi_0+u_{T+1}+\theta_1u_T
+\]
+
+Variables: \(u_T\) is the latest known/estimated shock.
+
+\[
+\hat y_{T+1}=\hat\phi_0+\hat\theta_1\hat u_T,\qquad \hat y_{T+h}=\hat\phi_0\text{ for }h\ge2
+\]
+
+Variables: future shocks have zero expected value.
+
+\subsubsection{ARMA(p,q)}\label{armapq}
+
+\[
+y_t=\phi_0+\phi_1y_{t-1}+\cdots+\phi_py_{t-p}+u_t+\theta_1u_{t-1}+\cdots+\theta_qu_{t-q}
+\]
+
+Variables: \(p\) is AR order; \(q\) is MA order.
+
+\[
+\text{lowest }\operatorname{AIC}=\text{preferred}
+\]
+
+Variables: use AIC to choose among candidate ARMA models.
+
+\subsection{Multi-Step Forecasting and Portfolio
+VaR}\label{multi-step-forecasting-and-portfolio-var}
+
+\subsubsection{Future squared shocks equal future variance in
+expectation}\label{future-squared-shocks-equal-future-variance-in-expectation}
+
+\[
+\mathbb E(\epsilon_{t+h-1}^2\mid F_t)=\mathbb E(\sigma_{t+h-1}^2\mid F_t)
+\]
+
+Variables: future squared shocks are unknown, so use their conditional
+expectation.
+
+\[
+\epsilon_{t+h-1}=\sigma_{t+h-1}u_{t+h-1},\qquad \mathbb E(u_{t+h-1}^2\mid F_{t+h-2})=1
+\]
+
+Variables: \(u\) is standardised to have conditional second moment 1.
+
+\subsubsection{Recursive h-step GARCH variance
+forecast}\label{recursive-h-step-garch-variance-forecast}
+
+\[
+\rho=\alpha_1+\beta_1
+\]
+
+Variables: \(\rho\) is GARCH persistence.
+
+\[
+\mathbb E(\sigma_{t+h}^2\mid F_t)=\alpha_0+\rho\mathbb E(\sigma_{t+h-1}^2\mid F_t)
+\]
+
+Variables: the \(h\)-step forecast uses the previous horizon's variance
+forecast.
+
+\subsubsection{Closed-form h-step GARCH
+forecast}\label{closed-form-h-step-garch-forecast}
+
+\[
+\begin{aligned}
+\mathbb E(\sigma_{t+h}^2\mid F_t)
+&=\alpha_0\frac{1-\rho^{h-1}}{1-\rho}\\
+&\quad+\rho^{h-1}\mathbb E(\sigma_{t+1}^2\mid F_t)
+\end{aligned}
+\]
+
+Variables: \(h\) is forecast horizon; \(\rho^{h-1}\) controls mean
+reversion speed.
+
+\subsubsection{Closed-form forecast using long-run
+variance}\label{closed-form-forecast-using-long-run-variance}
+
+\[
+\bar\sigma^2=\frac{\alpha_0}{1-\alpha_1-\beta_1}
+\]
+
+Variables: \(\bar\sigma^2\) is long-run variance.
+
+\[
+\mathbb E(\sigma_{t+h}^2\mid F_t)=\bar\sigma^2+\rho^{h-1}\left[\mathbb E(\sigma_{t+1}^2\mid F_t)-\bar\sigma^2\right]
+\]
+
+Variables: forecasts converge to \(\bar\sigma^2\) when \(\rho<1\).
+
+\[
+\mathbb E(\sigma_{t+h}^2\mid F_t)\to\bar\sigma^2
+\]
+
+Variables: this is the long-horizon mean-reversion result.
+
+\subsubsection{Prediction interval for
+returns}\label{prediction-interval-for-returns}
+
+\[
+r_{T+1}\mid F_T\sim\mathcal N(\mu_{T+1\mid T},\sigma_{T+1}^2)
+\]
+
+Variables: \(\mu_{T+1\mid T}\) is the one-step mean forecast;
+\(\sigma_{T+1}^2\) is the one-step variance forecast.
+
+\[
+\mu_{T+1\mid T}\pm1.96\sqrt{\sigma_{T+1}^2}
+\]
+
+Variables: this is an approximate 95 percent prediction interval.
+
+\subsubsection{One-asset VaR with forecast
+variance}\label{one-asset-var-with-forecast-variance}
+
+\[
+q_{0.05}=\mu_{T+1\mid T}-1.645\sqrt{\sigma_{T+1}^2}
+\]
+
+Variables: \(q_{0.05}\) is the 5 percent bad-return quantile.
+
+\[
+\operatorname{VaR}_{0.05}=|W_0q_{0.05}|
+\]
+
+Variables: \(W_0\) is position value.
+
+\[
+\operatorname{VaR}_{0.05}=|W_0(-1.645\sqrt{\sigma_{T+1}^2})|
+\]
+
+Variables: this is the zero-mean special case.
+
+\subsubsection{Asset-specific RiskMetrics
+forecast}\label{asset-specific-riskmetrics-forecast}
+
+\[
+\sigma_{i,t+1}^2=(1-\lambda_i)r_{i,t}^2+\lambda_i\sigma_{i,t}^2
+\]
+
+Variables: \(i\) indexes the asset; \(\lambda_i\) is asset-specific
+decay factor.
+
+\subsubsection{Asset-specific RiskMetrics
+VaR}\label{asset-specific-riskmetrics-var}
+
+\[
+\operatorname{VaR}_i=\left|W_i(-1.645)\sqrt{\sigma_{i,t+1}^2}\right|
+\]
+
+Variables: \(W_i\) is the dollar exposure to asset \(i\).
+
+\subsubsection{Two-asset portfolio return for
+VaR}\label{two-asset-portfolio-return-for-var}
+
+\[
+r_{p,t}=wr_{m,t}+(1-w)r_{c,t}
+\]
+
+Variables: \(w\) is the portfolio weight in asset \(m\); \(1-w\) is the
+weight in asset \(c\).
+
+\[
+w=\frac{\text{amount in asset }m}{\text{total portfolio value}},\qquad
+1-w=\frac{\text{amount in asset }c}{\text{total portfolio value}}
+\]
+
+Variables: weights are based on dollar values.
+
+\subsubsection{Two-asset portfolio variance for
+VaR}\label{two-asset-portfolio-variance-for-var}
+
+\[
+\sigma_p^2=w^2\sigma_m^2+(1-w)^2\sigma_c^2+2w(1-w)\rho\sigma_m\sigma_c
+\]
+
+Variables: \(\rho\) is correlation between the two asset returns.
+
+\subsubsection{Portfolio VaR from portfolio
+volatility}\label{portfolio-var-from-portfolio-volatility}
+
+\[
+\operatorname{VaR}_p=\left|\text{total value}\times(-1.645)\times\sigma_p\right|
+\]
+
+Variables: \(\sigma_p=\sqrt{\sigma_p^2}\) is portfolio standard
+deviation.
+
+\subsubsection{Portfolio VaR from individual
+VaRs}\label{portfolio-var-from-individual-vars}
+
+\[
+\operatorname{VaR}_p=\sqrt{\operatorname{VaR}_m^2+\operatorname{VaR}_c^2+2\rho\operatorname{VaR}_m\operatorname{VaR}_c}
+\]
+
+Variables: \(\operatorname{VaR}_m,\operatorname{VaR}_c\) are stand-alone
+asset VaRs.
+
+\subsubsection{Generic two-asset portfolio variance and VaR
+notation}\label{generic-two-asset-portfolio-variance-and-var-notation}
+
+\[
+\sigma_p^2=w_A^2\sigma_A^2+w_B^2\sigma_B^2+2w_Aw_B\rho_{AB}\sigma_A\sigma_B
+\]
+
+Variables: \(A,B\) are generic assets.
+
+\[
+\operatorname{VaR}_p=W_0(1.645)\sigma_p
+\]
+
+Variables: this writes VaR as a positive loss number when mean return is
+zero.
+
+\[
+\operatorname{VaR}_p=\sqrt{\operatorname{VaR}_A^2+\operatorname{VaR}_B^2+2\rho_{AB}\operatorname{VaR}_A\operatorname{VaR}_B}
+\]
+
+Variables: this is the same normal portfolio VaR logic expressed using
+individual VaRs.
+
+\subsection{Essential Exam Answer
+Templates}\label{essential-exam-answer-templates}
+
+\subsubsection{ADF template}\label{adf-template}
+
+\[
+\begin{aligned}
+H_0&:\text{unit root / non-stationary}\\
+H_1&:\text{stationary}\\
+\operatorname{ADF}&=\frac{\text{coefficient}}{\text{standard error}}\\
+\text{reject only if ADF is more negative than the critical value}
+\end{aligned}
+\]
+
+Variables: the coefficient is the ADF coefficient on lagged level.
+
+\subsubsection{General t-test template}\label{general-t-test-template}
+
+\[
+\begin{aligned}
+H_0&:\beta=\beta_0\\
+H_1&:\beta\ne\beta_0\\
+t&=\frac{\hat\beta-\beta_0}{\operatorname{se}(\hat\beta)}\\
+\text{compare }|t|\text{ to the critical value}
+\end{aligned}
+\]
+
+Variables: \(\beta_0\) is the hypothesised value.
+
+\subsubsection{CAPM versus multi-factor
+template}\label{capm-versus-multi-factor-template}
+
+\[
+\begin{aligned}
+H_0&:\text{all extra factor }\beta\text{s}=0\\
+H_1&:\text{at least one extra }\beta\ne0\\
+J&=\frac{RSS_0-RSS_1}{RSS_1/(T-K-1)}\\
+J&>\chi^2_{\text{restrictions}}\Rightarrow\text{reject }H_0
+\end{aligned}
+\]
+
+Variables: \(RSS_0\) is restricted-model RSS; \(RSS_1\) is
+unrestricted-model RSS.
+
+\subsubsection{ARCH test template}\label{arch-test-template}
+
+\[
+\begin{aligned}
+&\text{estimate mean model}\\
+&\text{square residuals}\\
+&\text{regress squared residuals on }q\text{ lags}\\
+&TR^2\sim\chi_q^2\\
+&\text{reject means ARCH effects / time-varying volatility}
+\end{aligned}
+\]
+
+Variables: \(q\) is number of lagged squared residuals in the auxiliary
+regression.
+
+\subsubsection{One-step GARCH forecast
+template}\label{one-step-garch-forecast-template}
+
+\[
+\begin{aligned}
+\text{mean forecast}&=\text{fitted mean equation using known latest returns}\\
+\text{variance forecast}&=\alpha_0+\alpha_1\epsilon_T^2+\beta_1\sigma_T^2
+\end{aligned}
+\]
+
+Variables: the latest return, shock, and variance are known at time
+\(T\).
+
+\subsubsection{Prediction interval
+template}\label{prediction-interval-template}
+
+\[
+\text{mean forecast}\pm1.96\sqrt{\text{variance forecast}}
+\]
+
+Variables: use 1.96 for an approximate 95 percent interval under
+normality.
+
+\subsubsection{5 percent VaR template}\label{percent-var-template}
+
+\[
+\begin{aligned}
+q_{0.05}&=\text{mean forecast}-1.645\sqrt{\text{variance forecast}}\\
+\operatorname{VaR}_{0.05}&=|\text{position value}\times q_{0.05}|
+\end{aligned}
+\]
+
+Variables: 1.645 is the one-sided 5 percent normal cutoff.
+
+\end{document}

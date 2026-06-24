@@ -1,0 +1,553 @@
+% !TEX program = xelatex
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+  8pt,
+  twocolumn]{extarticle}
+\usepackage{xcolor}
+\usepackage[landscape,margin=0.38in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\setlength{\columnsep}{0.32in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{3pt}
+\allowdisplaybreaks
+\sloppy
+\emergencystretch=3em
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Formula Sheet Part 3: Stationarity, AR Models, and
+ARCH}\label{formula-sheet-part-3-stationarity-ar-models-and-arch}
+
+This is a two-column topic split from
+\texttt{All\_Formulas\_From\_Chatnotes.md}.
+
+\subsection{Conventions}\label{conventions}
+
+\[
+t,T,h,k,n,p,q,N
+\]
+
+Variables: \(t\) is a time index; \(T\) is sample size or the final
+observed time; \(h\) is a forecast horizon; \(k\) is a lag or number of
+model parameters depending on context; \(n\) is a return horizon;
+\(p,q\) are lag orders; \(N\) is the number of assets.
+
+\[
+F_t
+\]
+
+Variables: \(F_t\) is the information set available at time \(t\).
+
+Returns may be written as decimals or percentages. Check the scale
+before applying VaR or standard deviation formulas.
+
+\subsection{Stationarity, Random Walks, ADF, and AR
+Models}\label{stationarity-random-walks-adf-and-ar-models}
+
+\subsubsection{Covariance stationarity}\label{covariance-stationarity}
+
+\[
+\begin{aligned}
+\mathbb E(Y_t)&=\mu\\
+\operatorname{Var}(Y_t)&=\sigma^2\\
+\operatorname{Cov}(Y_t,Y_{t-j})&=\gamma_j
+\end{aligned}
+\]
+
+Variables: stationarity means constant mean, constant variance, and
+autocovariance depending only on lag \(j\).
+
+\subsubsection{Stationarity rule of
+thumb}\label{stationarity-rule-of-thumb}
+
+\[
+\begin{aligned}
+\log\text{ prices}&\quad \text{often non-stationary}\\
+\log\text{ returns}&\quad \text{often stationary}
+\end{aligned}
+\]
+
+Variables: this is a modelling guide, not a formal test.
+
+\subsubsection{Random walk}\label{random-walk}
+
+\[
+p_t=p_{t-1}+\epsilon_t
+\]
+
+Variables: \(p_t\) is usually log price; \(\epsilon_t\) is the shock.
+
+\subsubsection{Random walk successive
+substitution}\label{random-walk-successive-substitution}
+
+\[
+p_t=p_0+\epsilon_1+\cdots+\epsilon_t
+\]
+
+Variables: \(p_0\) is the initial value.
+
+\subsubsection{Random walk moments}\label{random-walk-moments}
+
+\[
+\mathbb E(p_t)=p_0,\qquad \operatorname{Var}(p_t)=\sigma^2t
+\]
+
+Variables: \(\sigma^2\) is shock variance. If \(p_0=0\), the note's
+simplified mean is \(\mathbb E(p_t)=0\).
+
+\subsubsection{Random walk with drift}\label{random-walk-with-drift}
+
+\[
+p_t=\mu+p_{t-1}+\epsilon_t
+\]
+
+Variables: \(\mu\) is drift.
+
+\subsubsection{Random walk with drift successive
+substitution}\label{random-walk-with-drift-successive-substitution}
+
+\[
+p_t=p_0+\mu t+\epsilon_1+\cdots+\epsilon_t
+\]
+
+Variables: drift accumulates linearly over time.
+
+\subsubsection{Random walk with drift
+moments}\label{random-walk-with-drift-moments}
+
+\[
+\mathbb E(p_t)=p_0+\mu t,\qquad \operatorname{Var}(p_t)=\sigma^2t
+\]
+
+Variables: if \(p_0=0\), the note's simplified mean is \(\mu t\).
+
+\subsubsection{Unit-root AR form}\label{unit-root-ar-form}
+
+\[
+y_t=\phi_1y_{t-1}+\text{error}_t
+\]
+
+Variables: \(\phi_1\) is the autoregressive coefficient.
+
+\subsubsection{Unit root condition}\label{unit-root-condition}
+
+\[
+\phi_1=1
+\]
+
+Variables: a unit root implies random-walk-type non-stationarity.
+
+\subsubsection{ADF regression}\label{adf-regression}
+
+\[
+\Delta y_t=c_t+\phi_cy_{t-1}+\beta_1\Delta y_{t-1}+\cdots+\beta_p\Delta y_{t-p}+\epsilon_t
+\]
+
+Variables: \(\Delta y_t=y_t-y_{t-1}\); \(c_t\) is deterministic
+component; \(\phi_c\) is the unit-root test coefficient; \(\beta_j\)
+controls lagged differences.
+
+\subsubsection{ADF coefficient
+relationship}\label{adf-coefficient-relationship}
+
+\[
+\phi_c=\phi_1-1
+\]
+
+Variables: \(\phi_c=0\) corresponds to \(\phi_1=1\).
+
+\subsubsection{ADF hypotheses}\label{adf-hypotheses}
+
+\[
+\begin{aligned}
+H_0&:\phi_c=0\quad \text{unit root / non-stationary}\\
+H_1&:\phi_c<0\quad \text{stationary}
+\end{aligned}
+\]
+
+Variables: the ADF alternative is one-sided and negative.
+
+\subsubsection{ADF statistic}\label{adf-statistic}
+
+\[
+\operatorname{ADF}=\frac{\hat\phi_c}{\operatorname{se}(\hat\phi_c)}
+\]
+
+Variables: \(\hat\phi_c\) is the estimated ADF coefficient.
+
+\subsubsection{ADF decision rule}\label{adf-decision-rule}
+
+\[
+\operatorname{ADF}<\text{ADF critical value}\Rightarrow \text{reject }H_0
+\]
+
+Variables: ``less than'' means more negative than the critical value.
+
+\subsubsection{Drift-only ADF deterministic
+component}\label{drift-only-adf-deterministic-component}
+
+\[
+c_t=c
+\]
+
+Variables: \(c\) is a constant drift/intercept.
+
+\subsubsection{Trend ADF deterministic
+component}\label{trend-adf-deterministic-component}
+
+\[
+c_t=c_0+c_1t
+\]
+
+Variables: \(c_0\) is an intercept; \(c_1\) is deterministic trend
+slope.
+
+\subsubsection{Martingale difference
+sequence}\label{martingale-difference-sequence}
+
+\[
+\mathbb E(\epsilon_t\mid F_{t-1})=0
+\]
+
+Variables: \(\epsilon_t\) has zero conditional mean given past
+information.
+
+\subsubsection{AR(1) model}\label{ar1-model}
+
+\[
+y_t=c+\phi_1y_{t-1}+\epsilon_t
+\]
+
+Variables: \(c\) is intercept; \(\phi_1\) is the AR(1) coefficient.
+
+\subsubsection{AR(1) conditional mean}\label{ar1-conditional-mean}
+
+\[
+\mathbb E(y_t\mid F_{t-1})=c+\phi_1y_{t-1}
+\]
+
+Variables: the conditional mean is the one-step forecast given past
+information.
+
+\subsubsection{AR(1) unconditional mean}\label{ar1-unconditional-mean}
+
+\[
+\mathbb E(y_t)=\frac{c}{1-\phi_1}
+\]
+
+Variables: this requires stationarity, typically \(|\phi_1|<1\).
+
+\subsubsection{AR(1) conditional
+variance}\label{ar1-conditional-variance}
+
+\[
+\operatorname{Var}(\epsilon_t\mid F_{t-1})=\sigma_\epsilon^2
+\]
+
+Variables: \(\sigma_\epsilon^2\) is innovation variance.
+
+\[
+\operatorname{Var}(y_t\mid F_{t-1})=\sigma_\epsilon^2
+\]
+
+Variables: uncertainty in \(y_t\) conditional on \(F_{t-1}\) comes from
+the new shock.
+
+\subsubsection{AR(1) unconditional
+variance}\label{ar1-unconditional-variance}
+
+\[
+\operatorname{Var}(y_t)=\frac{\sigma_\epsilon^2}{1-\phi_1^2}
+\]
+
+Variables: this requires stationarity.
+
+\subsubsection{AR(1) one-step forecast}\label{ar1-one-step-forecast}
+
+\[
+\mathbb E(y_{t+1}\mid F_t)=c+\phi_1y_t
+\]
+
+Variables: \(y_t\) is known at time \(t\).
+
+\subsubsection{AR(1) two-step forecast}\label{ar1-two-step-forecast}
+
+\[
+\mathbb E(y_{t+2}\mid F_t)=c+\phi_1\mathbb E(y_{t+1}\mid F_t)=c(1+\phi_1)+\phi_1^2y_t
+\]
+
+Variables: the unknown future \(y_{t+1}\) is replaced by its forecast.
+
+\subsubsection{AR(1) long-horizon
+forecast}\label{ar1-long-horizon-forecast}
+
+\[
+\mathbb E(y_{t+h}\mid F_t)\to \frac{c}{1-\phi_1}
+\]
+
+Variables: forecasts mean-revert to the unconditional mean when the
+AR(1) is stationary.
+
+\subsection{ARCH and Volatility
+Models}\label{arch-and-volatility-models}
+
+\subsubsection{White noise}\label{white-noise}
+
+\[
+\begin{aligned}
+\mathbb E(u_t)&=0\\
+\operatorname{Var}(u_t)&=\sigma^2\\
+\operatorname{Corr}(u_t,u_{t-k})&=0,\quad k\ge1
+\end{aligned}
+\]
+
+Variables: \(u_t\) is a white-noise shock.
+
+\subsubsection{MDS conditional mean}\label{mds-conditional-mean}
+
+\[
+\mathbb E(u_t\mid F_{t-1})=0
+\]
+
+Variables: an MDS is unpredictable from past information.
+
+\subsubsection{MDS implies zero unconditional
+mean}\label{mds-implies-zero-unconditional-mean}
+
+\[
+\mathbb E(u_t)=\mathbb E[\mathbb E(u_t\mid F_{t-1})]=0
+\]
+
+Variables: this uses the law of iterated expectations.
+
+\subsubsection{MDS implies no
+autocovariance}\label{mds-implies-no-autocovariance}
+
+\[
+\operatorname{Cov}(u_t,u_{t-k})=0,\quad k\ge1
+\]
+
+Variables: \(u_{t-k}\) is known at time \(t-1\).
+
+\subsubsection{AR(p) model}\label{arp-model}
+
+\[
+y_t=c+\phi_1y_{t-1}+\cdots+\phi_py_{t-p}+\epsilon_t
+\]
+
+Variables: \(p\) is the autoregressive lag order.
+
+\subsubsection{AR(p) unconditional mean}\label{arp-unconditional-mean}
+
+\[
+\mathbb E(y_t)=\frac{c}{1-\phi_1-\cdots-\phi_p}
+\]
+
+Variables: denominator uses the sum of AR coefficients.
+
+\subsubsection{AR(p) one-step forecast}\label{arp-one-step-forecast}
+
+\[
+\mathbb E(y_{t+1}\mid F_t)=c+\phi_1y_t+\phi_2y_{t-1}+\cdots+\phi_py_{t-p+1}
+\]
+
+Variables: all lagged \(y\) values on the right are known at time \(t\).
+
+\subsubsection{AR(p) selection}\label{arp-selection}
+
+\[
+\text{lowest }\operatorname{AIC}=\text{preferred model}
+\]
+
+Variables: \(\operatorname{AIC}\) is Akaike information criterion.
+
+\subsubsection{Mean equation with
+residual}\label{mean-equation-with-residual}
+
+\[
+r_t=\mathbb E(r_t\mid F_{t-1})+\epsilon_t
+\]
+
+Variables: \(\epsilon_t\) is the return shock after using information at
+\(t-1\).
+
+\subsubsection{Constant-variance
+benchmark}\label{constant-variance-benchmark}
+
+\[
+\operatorname{Var}(\epsilon_t\mid F_{t-1})=\sigma_\epsilon^2
+\]
+
+Variables: this benchmark has no time-varying conditional volatility.
+
+\subsubsection{ARCH LM mean model}\label{arch-lm-mean-model}
+
+\[
+y_t=x_t'\beta+\epsilon_t
+\]
+
+Variables: \(x_t\) is a regressor vector; \(\beta\) is a coefficient
+vector.
+
+\subsubsection{ARCH LM auxiliary
+regression}\label{arch-lm-auxiliary-regression}
+
+\[
+\hat\epsilon_t^2=\rho_0+\rho_1\hat\epsilon_{t-1}^2+\cdots+\rho_q\hat\epsilon_{t-q}^2+v_t
+\]
+
+Variables: \(\hat\epsilon_t^2\) is squared residual; \(q\) is the number
+of ARCH lags tested.
+
+\subsubsection{ARCH LM hypotheses and
+statistic}\label{arch-lm-hypotheses-and-statistic}
+
+\[
+\begin{aligned}
+H_0&:\rho_1=\cdots=\rho_q=0\quad \text{no ARCH effects}\\
+H_1&:\text{at least one }\rho_j\ne0\quad \text{ARCH effects exist}\\
+TR^2&\sim\chi_q^2
+\end{aligned}
+\]
+
+Variables: \(R^2\) comes from the auxiliary regression.
+
+\subsubsection{ARCH LM decision rule}\label{arch-lm-decision-rule}
+
+\[
+TR^2>\chi_q^2\text{ critical value}\Rightarrow \text{reject }H_0
+\]
+
+Variables: rejecting means volatility is time-varying and predictable.
+
+\subsubsection{ARCH model structure}\label{arch-model-structure}
+
+\[
+\epsilon_t=\sigma_tu_t,\qquad u_t\sim\mathrm{iid}(0,1)
+\]
+
+Variables: \(\sigma_t\) is conditional standard deviation; \(u_t\) is a
+standardised shock.
+
+\subsubsection{ARCH conditional moments}\label{arch-conditional-moments}
+
+\[
+\mathbb E(\epsilon_t\mid F_{t-1})=0,\qquad \operatorname{Var}(\epsilon_t\mid F_{t-1})=\sigma_t^2
+\]
+
+Variables: \(\sigma_t^2\) is conditional variance.
+
+\subsubsection{ARCH(1)}\label{arch1}
+
+\[
+\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2
+\]
+
+Variables: \(\alpha_0\) is variance intercept; \(\alpha_1\) is the ARCH
+coefficient.
+
+\subsubsection{ARCH(1) conditions}\label{arch1-conditions}
+
+\[
+\alpha_0>0,\qquad \alpha_1\ge0,\qquad \alpha_1<1
+\]
+
+Variables: these keep variance positive and finite.
+
+\subsubsection{ARCH(q)}\label{archq}
+
+\[
+\sigma_t^2=\alpha_0+\alpha_1\epsilon_{t-1}^2+\cdots+\alpha_q\epsilon_{t-q}^2
+\]
+
+Variables: \(q\) is the number of lagged squared shocks.
+
+\subsubsection{ARCH(q) conditions}\label{archq-conditions}
+
+\[
+\alpha_0>0,\qquad \alpha_i\ge0,\qquad \sum_{i=1}^{q}\alpha_i<1
+\]
+
+Variables: \(\sum\alpha_i\) measures volatility persistence in ARCH(q).
+
+\subsubsection{ARCH(1) unconditional
+moments}\label{arch1-unconditional-moments}
+
+\[
+\begin{aligned}
+\mathbb E(\epsilon_t)&=0\\
+\operatorname{Cov}(\epsilon_t,\epsilon_{t-k})&=0,\quad k\ge1\\
+\operatorname{Var}(\epsilon_t)&=\frac{\alpha_0}{1-\alpha_1}
+\end{aligned}
+\]
+
+Variables: ARCH errors are uncorrelated, but squared errors can be
+autocorrelated.
+
+\subsubsection{Information criteria}\label{information-criteria}
+
+\[
+AIC=-2\ell+2k,\qquad BIC=-2\ell+k\log(T)
+\]
+
+Variables: \(\ell\) is log-likelihood; \(k\) is number of estimated
+parameters; lower is better.
+
+\end{document}
