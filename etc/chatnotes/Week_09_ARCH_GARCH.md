@@ -121,10 +121,12 @@ $$
 
 Why conditions matter:
 
-```text
-non-negative parameters        keep variance positive
-alpha_1 + beta_1 < 1           finite unconditional variance and mean reversion
-```
+$$
+\begin{aligned}
+\text{non-negative parameters} & \text{keep variance positive} \\
+\alpha_{1} + \beta_{1} < 1 & \text{finite unconditional variance and mean reversion}
+\end{aligned}
+$$
 
 ## Persistence (Exam)
 
@@ -134,9 +136,9 @@ Example: $\alpha_1+\beta_1=0.98$ means volatility shocks fade very slowly.
 
 For GARCH(1,1), volatility persistence is:
 
-```text
-alpha_1 + beta_1
-```
+$$
+\alpha_{1} + \beta_{1}
+$$
 
 Interpretation:
 
@@ -169,10 +171,12 @@ $$
 
 Do not confuse:
 
-```text
-alpha_0                  affects volatility level
-alpha_1 + beta_1          affects persistence
-```
+$$
+\begin{aligned}
+\alpha_{0} & \text{affects volatility level} \\
+\alpha_{1} + \beta_{1} & \text{affects persistence}
+\end{aligned}
+$$
 
 Two models can have the same persistence but different long-run variance. Two models can have the same long-run variance but different persistence.
 
@@ -366,7 +370,7 @@ Concept: model comparison asks whether extra GARCH persistence improves fit enou
 
 Example: a much larger log likelihood for GARCH suggests lagged variance matters.
 
-ARCH(q) is nested inside GARCH(p,q) when all `beta` terms are zero.
+ARCH(q) is nested inside GARCH(p,q) when all $\beta$ terms are zero.
 
 Likelihood ratio test:
 
@@ -632,7 +636,7 @@ So unconditional skewness is zero. Standard GARCH with normal innovations does n
 
 1. Write ARCH(q), GARCH(p,q), and GARCH(1,1).
 2. Check positivity and stationarity conditions.
-3. Interpret `alpha_1`, `beta_1`, and `alpha_1 + beta_1`.
+3. Interpret $\alpha_{1}$, $\beta_{1}$, and $\alpha_{1} + \beta_{1}$.
 4. Compute long-run variance.
 5. Write a fitted AR-GARCH model from R output.
 6. Compute one-step mean and variance forecasts.

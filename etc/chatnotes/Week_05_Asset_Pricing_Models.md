@@ -10,7 +10,7 @@ The answer in this week is not "because it is volatile" by itself. The answer is
 
 This is the story behind CAPM and the factor models. CAPM begins with one priced risk factor: the market. Fama-French and Carhart extend the same idea by adding extra factors such as size, value, and momentum.
 
-By the end of the week, you should be able to look at a regression output and explain what the alpha, beta, residual standard error, and `R^2` mean in economic language.
+By the end of the week, you should be able to look at a regression output and explain what the alpha, beta, residual standard error, and $R^2$ mean in economic language.
 
 ## Jargon Check
 
@@ -59,28 +59,28 @@ The Capital Asset Pricing Model, or CAPM, says an asset's expected excess return
 
 The pricing equation is:
 
-```text
-E(R_i) - r_f = beta_i * [E(R_m) - r_f]
-```
+$$
+E(R_i) - r_f = \beta_{i} \cdot [E(R_m) - r_f]
+$$
 
 Read it from left to right:
 
-- `E(R_i) - r_f` is the extra return investors expect from asset `i` above the safe rate.
-- `E(R_m) - r_f` is the market risk premium.
-- `beta_i` tells us how much market risk asset `i` carries.
+- $E(R_i) - r_f$ is the extra return investors expect from asset `i` above the safe rate.
+- $E(R_m) - r_f$ is the market risk premium.
+- $\beta_{i}$ tells us how much market risk asset `i` carries.
 
-If `beta_i = 1`, the asset has market-like exposure. If the market risk premium is 6%, the asset's expected excess return is also 6%.
+If $\beta_{i} = 1$, the asset has market-like exposure. If the market risk premium is 6%, the asset's expected excess return is also 6%.
 
-If `beta_i = 2`, the asset is more aggressive. It carries twice the market exposure, so CAPM predicts twice the expected excess return.
+If $\beta_{i} = 2$, the asset is more aggressive. It carries twice the market exposure, so CAPM predicts twice the expected excess return.
 
-If `beta_i = 0.5`, the asset is more defensive. It carries only half the market exposure, so CAPM predicts a lower expected excess return.
+If $\beta_{i} = 0.5$, the asset is more defensive. It carries only half the market exposure, so CAPM predicts a lower expected excess return.
 
 | Beta | Interpretation |
 | --- | --- |
-| `beta > 1` | More aggressive than the market |
-| `beta = 1` | Moves like the market |
-| `0 < beta < 1` | Less sensitive than the market |
-| `beta = 0` | No systematic market exposure |
+| $\beta > 1$ | More aggressive than the market |
+| $\beta = 1$ | Moves like the market |
+| $0 < \beta < 1$ | Less sensitive than the market |
+| $\beta = 0$ | No systematic market exposure |
 
 ### Section Summary
 
@@ -95,17 +95,17 @@ In real data, we estimate CAPM using a regression. The theoretical model talks a
 
 The empirical CAPM regression is:
 
-```text
-r_it - r_ft = alpha_i + beta_i * (r_mt - r_ft) + e_it
-```
+$$
+r_{it} - r_{ft} = \alpha_{i} + \beta_{i} \cdot (r_{mt} - r_{ft}) + e_{it}
+$$
 
 Where:
 
-- `r_it - r_ft` is the excess return on asset `i` at time `t`.
-- `r_mt - r_ft` is the market excess return at time `t`.
-- `alpha_i` is abnormal average return not explained by market exposure.
-- `beta_i` is market exposure.
-- `e_it` is the residual, or the part of the asset's return not explained by the market.
+- $r_{it} - r_{ft}$ is the excess return on asset `i` at time `t`.
+- $r_{mt} - r_{ft}$ is the market excess return at time `t`.
+- $\alpha_{i}$ is abnormal average return not explained by market exposure.
+- $\beta_{i}$ is market exposure.
+- $e_{it}$ is the residual, or the part of the asset's return not explained by the market.
 
 This regression turns the economic idea into something measurable. The market excess return is the explanatory variable. The asset excess return is the dependent variable. The slope is beta.
 
@@ -116,7 +116,7 @@ flowchart LR
     mkt["Market excess return"] --> beta["beta_i: market sensitivity"]
     beta --> asset["Asset excess return"]
     alpha["alpha_i: abnormal average return"] --> asset
-    news["Firm-specific news"] --> resid["e_it: residual"]
+    news["Firm-specific news"] --> resid["e_{it}: residual"]
     resid --> asset
 ```
 
@@ -132,9 +132,9 @@ flowchart LR
 
 In the theoretical CAPM, alpha should be zero:
 
-```text
-alpha_i = 0
-```
+$$
+\alpha_{i} = 0
+$$
 
 If alpha is zero, the asset earns what CAPM predicts after accounting for market risk.
 
@@ -144,10 +144,10 @@ If alpha is negative, the asset earned less than CAPM predicts. This may suggest
 
 | Alpha | Interpretation |
 | --- | --- |
-| `alpha > 0` | Excess reward after controlling for modelled risk |
-| `alpha = 0` | CAPM-consistent return |
-| `alpha < 0` | Inadequate reward relative to CAPM |
-
+| $\alpha > 0$ | Excess reward after controlling for modelled risk |
+| $\alpha = 0$ | CAPM-consistent return |
+| $\alpha < 0$ | Inadequate reward relative to CAPM |
+	
 The caution is important: alpha is model-dependent. A positive CAPM alpha might disappear once SMB, HML, or MOM are included. In that case, the "abnormal" return was not truly abnormal; CAPM was just missing a relevant risk factor.
 
 ### Section Summary
@@ -162,35 +162,35 @@ CAPM also gives a way to split total risk into market-related risk and idiosyncr
 
 Ignoring alpha for the moment, the CAPM regression can be written as:
 
-```text
-r_it - r_f = beta_i * (r_mt - r_f) + e_it
-```
+$$
+r_{it} - r_f = \beta_{i} \cdot (r_{mt} - r_f) + e_{it}
+$$
 
 The variance decomposition is:
 
-```text
-var(r_it - r_f) = beta_i^2 * var(r_mt - r_f) + var(e_it)
-```
+$$
+\operatorname{Var}(r_{it} - r_f) = \beta_{i}^2 \cdot \operatorname{Var}(r_{mt} - r_f) + \operatorname{Var}(e_{it})
+$$
 
 In words:
 
-```text
-total risk = systematic risk + idiosyncratic risk
-```
+$$
+\text{total risk} = \text{systematic risk} + \text{idiosyncratic risk}
+$$
 
-The regression `R^2` tells us the proportion of the asset's return variation explained by the model. In a CAPM regression, that means the share explained by the market factor.
+The regression $R^2$ tells us the proportion of the asset's return variation explained by the model. In a CAPM regression, that means the share explained by the market factor.
 
 If:
 
-```text
+$$
 R^2 = 0.70
-```
+$$
 
 then about 70% of the variation is systematic market-related variation, and:
 
-```text
+$$
 1 - R^2 = 0.30
-```
+$$
 
 or 30%, is idiosyncratic variation.
 
@@ -199,8 +199,8 @@ The residual standard error is also important. It estimates the standard deviati
 ### Section Summary
 
 - CAPM splits total return variation into systematic and idiosyncratic parts.
-- `R^2` is the fraction explained by market risk.
-- `1 - R^2` is the idiosyncratic fraction.
+- $R^2$ is the fraction explained by market risk.
+- $1 - R^2$ is the idiosyncratic fraction.
 - Residual standard error estimates the magnitude of idiosyncratic volatility.
 
 ## Microsoft CAPM Example
@@ -216,9 +216,9 @@ The setup is:
 
 The regression is:
 
-```text
-MSFT excess return = alpha + beta * S&P500 excess return + error
-```
+$$
+\text{MSFT excess return} = \alpha + \beta \cdot \text{S\&P 500 excess return} + \text{error}
+$$
 
 The estimated values are approximately:
 
@@ -228,17 +228,17 @@ The estimated values are approximately:
 | SE(beta) | `0.2` | Uncertainty around the beta estimate |
 | Alpha | `0.013` | About 1.3% monthly abnormal return before judging significance |
 | SE(alpha) | `0.008` | Uncertainty around alpha |
-| `R^2` | `0.31` | 31% of variation explained by market movements |
+| $R^2$ | `0.31` | 31% of variation explained by market movements |
 | Residual standard error | `0.090` | Idiosyncratic volatility around 9% per month |
 
-The key interpretation is that Microsoft had a beta greater than 1, so it was aggressive relative to the market during this sample. But most of Microsoft's month-to-month variation was not explained by the market alone, because `1 - R^2 = 0.69`. That means about 69% of the variation was idiosyncratic.
+The key interpretation is that Microsoft had a beta greater than 1, so it was aggressive relative to the market during this sample. But most of Microsoft's month-to-month variation was not explained by the market alone, because $1 - R^2 = 0.69$. That means about 69% of the variation was idiosyncratic.
 
 ### Section Summary
 
-- A CAPM regression lets us estimate beta, alpha, `R^2`, and idiosyncratic risk.
+- A CAPM regression lets us estimate beta, alpha, $R^2$, and idiosyncratic risk.
 - Microsoft's estimated beta was above 1 in the lecture example.
 - The market explained only part of Microsoft's variation.
-- A low or moderate `R^2` suggests substantial idiosyncratic movement.
+- A low or moderate $R^2$ suggests substantial idiosyncratic movement.
 
 ## Why Move Beyond CAPM?
 
@@ -275,13 +275,15 @@ The Fama-French three-factor model adds two factors to the market factor:
 
 The model is:
 
-```text
-r_it - r_ft = alpha_i
-           + beta_i1 * (r_mt - r_ft)
-           + beta_i2 * SMB_t
-           + beta_i3 * HML_t
-           + e_it
-```
+$$
+\begin{aligned}
+r_{it} - r_{ft} &= \alpha_{i} \\
+&\quad + \beta_{i1} \cdot (r_{mt} - r_{ft}) \\
+&\quad + \beta_{i2} \cdot SMB_{t} \\
+&\quad + \beta_{i3} \cdot HML_{t} \\
+&\quad + e_{it}
+\end{aligned}
+$$
 
 ### SMB: Small Minus Big
 
@@ -324,31 +326,35 @@ The lecture uses industry portfolios to show how factor loadings are interpreted
 
 For manufacturing, the fitted equation is approximately:
 
-```text
-r_Mt - r_f = -0.015
-           + 1.03 * (r_mt - r_f)
-           + 0.66 * SMB_t
-           + 0.434 * HML_t
-```
+$$
+\begin{aligned}
+r_{Mt} - r_f &= -0.015 \\
+&\quad + 1.03 \cdot (r_{mt} - r_f) \\
+&\quad + 0.66 \cdot SMB_{t} \\
+&\quad + 0.434 \cdot HML_{t}
+\end{aligned}
+$$
 
-This says manufacturing tracks the market closely because its market beta is about 1.03. It also has positive SMB and HML exposure, so it behaves more like a small-value portfolio. The `R^2` is about 0.94, which means the three factors explain a large share of its variation.
+This says manufacturing tracks the market closely because its market beta is about 1.03. It also has positive SMB and HML exposure, so it behaves more like a small-value portfolio. The $R^2$ is about 0.94, which means the three factors explain a large share of its variation.
 
 For technology, the fitted equation is approximately:
 
-```text
-r_Tt - r_f = 0.201
-           + 1.21 * (r_mt - r_f)
-           + 0.95 * SMB_t
-           - 0.188 * HML_t
-```
+$$
+\begin{aligned}
+r_{Tt} - r_f &= 0.201 \\
+&\quad + 1.21 \cdot (r_{mt} - r_f) \\
+&\quad + 0.95 \cdot SMB_{t} \\
+&\quad - 0.188 \cdot HML_{t}
+\end{aligned}
+$$
 
-Technology has a market beta above 1, so it is more aggressive than the market. Its SMB loading is positive, so it has a small-cap tilt. Its HML loading is negative, so it has a growth tilt. The `R^2` is about 0.87, meaning the model explains much of the variation, though less than for manufacturing.
+Technology has a market beta above 1, so it is more aggressive than the market. Its SMB loading is positive, so it has a small-cap tilt. Its HML loading is negative, so it has a growth tilt. The $R^2$ is about 0.87, meaning the model explains much of the variation, though less than for manufacturing.
 
 ### Section Summary
 
 - Manufacturing: market-like, small-cap tilt, value tilt.
 - Technology: aggressive market exposure, small-cap tilt, growth tilt.
-- `R^2` helps judge how much variation the factors explain.
+- $R^2$ helps judge how much variation the factors explain.
 
 ## Momentum And Four-Factor Models
 
@@ -358,20 +364,22 @@ Momentum is based on the idea that recent winners may continue to perform well f
 
 The four-factor model is:
 
-```text
-r_it - r_ft = alpha_i
-           + beta_i1 * (r_mt - r_ft)
-           + beta_i2 * SMB_t
-           + beta_i3 * HML_t
-           + beta_i4 * MOM_t
-           + e_it
-```
+$$
+\begin{aligned}
+r_{it} - r_{ft} &= \alpha_{i} \\
+&\quad + \beta_{i1} \cdot (r_{mt} - r_{ft}) \\
+&\quad + \beta_{i2} \cdot SMB_{t} \\
+&\quad + \beta_{i3} \cdot HML_{t} \\
+&\quad + \beta_{i4} \cdot MOM_{t} \\
+&\quad + e_{it}
+\end{aligned}
+$$
 
 If:
 
-```text
-beta_i2 = beta_i3 = beta_i4 = 0
-```
+$$
+\beta_{i2} = \beta_{i3} = \beta_{i4} = 0
+$$
 
 then the model reduces back to CAPM, because only the market factor remains.
 
@@ -389,37 +397,41 @@ A single coefficient can be tested with a t-test.
 
 For example, to test whether an asset tracks the market:
 
-```text
-H0: beta = 1
-H1: beta != 1
-```
+$$
+\begin{aligned}
+H_0 &: \beta = 1 \\
+H_1 &: \beta \ne 1
+\end{aligned}
+$$
 
 The test statistic is:
 
-```text
-t = (estimated beta - hypothesised beta) / standard error
-```
+$$
+t = (\widehat{\\beta} - \\beta_{0}) / SE
+$$
 
 If `|t|` is larger than the critical value, reject the null.
 
 To test whether a factor matters, the null is usually that its coefficient is zero:
 
-```text
-H0: beta_SMB = 0
-H1: beta_SMB != 0
-```
+$$
+\begin{aligned}
+H_0 &: \beta_{SMB} = 0 \\
+H_1 &: \beta_{SMB} \ne 0
+\end{aligned}
+$$
 
 Then:
 
-```text
-t = estimated beta / standard error
-```
+$$
+t = \widehat{\\beta} / SE
+$$
 
 ### Section Summary
 
 - Use a t-test for one coefficient at a time.
-- Testing `beta = 1` checks whether an asset tracks the market.
-- Testing `beta = 0` checks whether a factor has explanatory power.
+- Testing $\beta = 1$ checks whether an asset tracks the market.
+- Testing $\beta = 0$ checks whether a factor has explanatory power.
 
 ## Joint Test: CAPM Versus A Multi-Factor Model
 
@@ -427,23 +439,23 @@ Sometimes we do not want to test one factor at a time. We want to test whether s
 
 For a four-factor model compared with CAPM, the null is:
 
-```text
-H0: beta_SMB = beta_HML = beta_MOM = 0
-```
+$$
+H_0: \beta_{SMB} = \beta_{HML} = \beta_{MOM} = 0
+$$
 
 The alternative is:
 
-```text
-H1: at least one of these coefficients is not zero
-```
+$$
+H_1: \text{at least one of these coefficients is not zero}
+$$
 
 The restricted model is CAPM. The unrestricted model is the larger four-factor model.
 
 The unit's joint test statistic is:
 
-```text
+$$
 J = (RSS0 - RSS1) / [RSS1 / (T - K - 1)]
-```
+$$
 
 Where:
 
@@ -466,21 +478,21 @@ If `J` is larger than the chi-square critical value, reject the CAPM restriction
 
 R output often gives residual standard error instead of RSS. You can recover RSS using:
 
-```text
-RSS = (residual standard error)^2 * df
-```
+$$
+RSS = (residual SE)^2 \cdot df
+$$
 
 This works because:
 
-```text
-residual standard error = sqrt(RSS / df)
-```
+$$
+residual SE = \sqrt{RSS / df}
+$$
 
 where:
 
-```text
+$$
 df = T - K - 1
-```
+$$
 
 This is useful in exam questions where you are given residual standard errors for CAPM and a multi-factor model and asked to compute the joint statistic.
 
@@ -492,23 +504,23 @@ This is useful in exam questions where you are given residual standard errors fo
 
 ## Model Diagnostics And Fit
 
-`R^2` and adjusted `R^2` tell us how well a model fits the sample.
+$R^2$ and adjusted $R^2$ tell us how well a model fits the sample.
 
 In the lecture examples:
 
-- manufacturing CAPM `R^2` is about 0.8166;
-- manufacturing multi-factor adjusted `R^2` is about 0.9393;
-- technology CAPM `R^2` is about 0.75;
-- technology multi-factor adjusted `R^2` is about 0.87.
+- manufacturing CAPM $R^2$ is about 0.8166;
+- manufacturing multi-factor adjusted $R^2$ is about 0.9393;
+- technology CAPM $R^2$ is about 0.75;
+- technology multi-factor adjusted $R^2$ is about 0.87.
 
 This suggests the multi-factor model fits these industry portfolios better than simple CAPM.
 
-But do not overstate this. A high `R^2` means the model explains a large share of return variation in the sample. It does not automatically prove the model is economically true or that it will forecast well.
+But do not overstate this. A high $R^2$ means the model explains a large share of return variation in the sample. It does not automatically prove the model is economically true or that it will forecast well.
 
 ### Section Summary
 
-- `R^2` measures explained variation.
-- Adjusted `R^2` is useful when comparing models with different numbers of regressors.
+- $R^2$ measures explained variation.
+- Adjusted $R^2$ is useful when comparing models with different numbers of regressors.
 - Better fit supports the model, but does not prove the model is true.
 
 ## Worked Exam Practice
@@ -522,27 +534,27 @@ An OLS regression of a stock's monthly excess return on the market excess return
 | Intercept | 0.18 | 0.22 |
 | MKT-RF | 1.28 | 0.14 |
 
-The regression has `R^2 = 0.64` and residual standard error `3.10`.
+The regression has $R^2 = 0.64$ and residual standard error `3.10`.
 
 Answer:
 
 The fitted regression is:
 
-```text
+$$
 r_i - r_f = 0.18 + 1.28(r_m - r_f) + e_i
-```
+$$
 
 The beta of 1.28 means the stock is more sensitive than the market. A 1 percentage point increase in market excess return is associated with about a 1.28 percentage point increase in the stock's excess return.
 
 To test whether the stock tracks the market:
 
-```text
+$$
 t = (1.28 - 1) / 0.14 = 2.00
-```
+$$
 
-Using 1.96 as the approximate 5% two-sided critical value, reject `H0: beta = 1` just barely. The stock does not exactly track the market.
+Using 1.96 as the approximate 5% two-sided critical value, reject $H_0: \beta = 1$ just barely. The stock does not exactly track the market.
 
-The systematic fraction is `R^2 = 0.64`, or 64%. The idiosyncratic fraction is `1 - R^2 = 0.36`, or 36%. The residual standard error of 3.10 is the typical unexplained monthly movement.
+The systematic fraction is $R^2 = 0.64$, or 64%. The idiosyncratic fraction is $1 - R^2 = 0.36$, or 36%. The residual standard error of 3.10 is the typical unexplained monthly movement.
 
 ### Question 2: Fama-French Coefficient Interpretation
 
@@ -563,46 +575,52 @@ Interpretation:
 
 Testing SMB:
 
-```text
+$$
 t = 0.42 / 0.15 = 2.80
-```
+$$
 
 This is significant at the 5% level using a two-sided critical value of about 1.96.
 
 Testing HML at the 1% level:
 
-```text
+$$
 t = -0.31 / 0.12 = -2.58
-```
+$$
 
-Since `|t| = 2.58` is just above 2.576, HML is just significant at the 1% level.
+Since $|t| = 2.58$ is just above 2.576, HML is just significant at the 1% level.
 
 ### Question 3: Joint Test Of CAPM Versus Four-Factor Model
 
-The CAPM regression has residual standard error `5.80` with 216 degrees of freedom. The four-factor model has residual standard error `5.35` with 213 degrees of freedom. The sample size is `T = 218`.
+The CAPM regression has residual standard error `5.80` with 216 degrees of freedom. The four-factor model has residual standard error `5.35` with 213 degrees of freedom. The sample size is $T = 218$.
 
 The hypotheses are:
 
-```text
-H0: beta_SMB = beta_HML = beta_MOM = 0
-H1: at least one extra factor coefficient is nonzero
-```
+$$
+\begin{aligned}
+H_0 &: \beta_{SMB} = \beta_{HML} = \beta_{MOM} = 0 \\
+H_1 &: \text{at least one extra factor coefficient is nonzero}
+\end{aligned}
+$$
 
 Recover the RSS values:
 
-```text
-RSS0 = 5.80^2 * 216 = 7266.24
-RSS1 = 5.35^2 * 213 = 6096.59
-```
+$$
+\begin{aligned}
+RSS0 &= 5.80^2 \cdot 216 = 7266.24 \\
+RSS1 &= 5.35^2 \cdot 213 = 6096.59
+\end{aligned}
+$$
 
 Then:
 
-```text
-J = (7266.24 - 6096.59) / (6096.59 / 213)
-  = 40.87
-```
+$$
+\begin{aligned}
+J &= (7266.24 - 6096.59) / (6096.59 / 213) \\
+ &= 40.87
+\end{aligned}
+$$
 
-Compare this with `chi-square_3 = 7.815`. Since `40.87 > 7.815`, reject the null. The four-factor model explains returns better than CAPM in this example.
+Compare this with $chi-square_3 = 7.815$. Since $40.87 > 7.815$, reject the null. The four-factor model explains returns better than CAPM in this example.
 
 ## Week 5 Big Picture
 
@@ -623,7 +641,7 @@ You should be able to answer:
 3. What does beta measure?
 4. What does alpha measure?
 5. How is CAPM estimated as a regression?
-6. What does `R^2` mean in a CAPM regression?
+6. What does $R^2$ mean in a CAPM regression?
 7. What does residual standard error estimate?
 8. What are SMB, HML, and MOM?
 9. How do you interpret positive and negative SMB/HML loadings?

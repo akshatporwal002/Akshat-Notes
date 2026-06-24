@@ -78,7 +78,7 @@ $$
 \sigma_t^2 = \alpha_0 + \alpha_1 \epsilon_{t-1}^2 + \beta_1 \sigma_{t-1}^2
 $$
 
-Because the shock enters as `epsilon_{t-1}^2`, a shock of `+2` and `-2` has the same effect:
+Because the shock enters as $epsilon_{t-1}^2$, a shock of $+2$ and `-2` has the same effect:
 
 $$
 (+2)^2 = (-2)^2 = 4
@@ -129,13 +129,13 @@ $$
 
 Leverage effect:
 
-```text
-lambda > 0
-```
+$$
+\lambda > 0
+$$
 
-If `lambda` is positive and significant, bad news has a larger effect on volatility.
+If $\lambda$ is positive and significant, bad news has a larger effect on volatility.
 
-In `rugarch` output, `gamma1` often corresponds to the GJR leverage parameter `lambda`.
+In `rugarch` output, `gamma1` often corresponds to the GJR leverage parameter $\lambda$.
 
 ## Testing leverage in GJR-GARCH (Exam)
 
@@ -160,16 +160,18 @@ $$
 
 Decision at 5 percent:
 
-```text
-if |t| > 1.96, reject H0
-```
+$$
+\text{if } |t| > 1.96, \text{ reject } H_0
+$$
 
 Interpretation:
 
-```text
-reject and lambda_hat > 0   significant leverage effect
-do not reject               no strong evidence of asymmetry
-```
+$$
+\begin{aligned}
+\text{reject and } \hat{\lambda} > 0 & \text{significant leverage effect} \\
+\text{do not reject} & \text{no strong evidence of asymmetry}
+\end{aligned}
+$$
 
 ## GJR-GARCH conditions (Exam)
 
@@ -190,9 +192,9 @@ $$
 
 For finite unconditional variance under symmetric shocks:
 
-```text
-alpha_1 + beta_1 + lambda/2 < 1
-```
+$$
+\alpha_{1} + \beta_{1} + \lambda/2 < 1
+$$
 
 The `lambda/2` appears because under a symmetric distribution, negative shocks occur about half the time.
 
@@ -225,7 +227,7 @@ $$
 u_{t-1} = \epsilon_{t-1} / \sigma_{t-1}
 $$
 
-If `u_t` is standard normal:
+If $u_t$ is standard normal:
 
 $$
 E|u_t| = \sqrt{2/pi} \approx 0.7979
@@ -233,9 +235,9 @@ $$
 
 Leverage in this notation:
 
-```text
-alpha_1 < 0
-```
+$$
+\alpha_{1} < 0
+$$
 
 A negative shock then has a larger effect on log variance than a positive shock of the same size.
 
@@ -255,9 +257,9 @@ The News Impact Curve plots next-period conditional variance against yesterday's
 
 It answers:
 
-```text
-if yesterday's news was epsilon_{t-1}, what happens to today's variance?
-```
+$$
+\text{if yesterday's news was } \epsilon_{t-1}\text{, what happens to today's variance?}
+$$
 
 ## NIC for ARCH(1) (Exam)
 
@@ -279,10 +281,12 @@ $$
 
 Interpretation:
 
-```text
-alpha_0   vertical position / baseline variance
-alpha_1   curvature / sensitivity to shocks
-```
+$$
+\begin{aligned}
+\alpha_{0} & \text{vertical position / baseline variance} \\
+\alpha_{1} & \text{curvature / sensitivity to shocks}
+\end{aligned}
+$$
 
 It is symmetric because positive and negative shocks have the same squared value.
 
@@ -313,7 +317,7 @@ NIC = \alpha_0 + \beta_1 [\alpha_0 / (1 - \alpha_1 - \beta_1)] \\
 \end{aligned}
 $$
 
-It is still symmetric. Curvature is governed by `alpha_1`.
+It is still symmetric. Curvature is governed by $\alpha_{1}$.
 
 ## NIC for GJR-GARCH (Exam)
 
@@ -352,12 +356,14 @@ $$
 
 Curvature:
 
-```text
-positive shocks   alpha_1
-negative shocks   alpha_1 + lambda
-```
+$$
+\begin{aligned}
+\text{positive shocks} & \alpha_1 \\
+\text{negative shocks} & \alpha_1 + \lambda
+\end{aligned}
+$$
 
-This is exactly the practice exam idea. If asked which parameters determine curvature, say `alpha_1` and `lambda`; the negative side has curvature `alpha_1 + lambda`.
+This is exactly the practice exam idea. If asked which parameters determine curvature, say $\alpha_{1}$ and $\lambda$; the negative side has curvature $\alpha_{1} + \lambda$.
 
 ## Exam-Style Practice Questions
 
@@ -536,7 +542,7 @@ EGARCH models log variance, so variance is automatically positive after exponent
 1. Explain leverage effect in plain language.
 2. Explain why standard GARCH is symmetric.
 3. Write GJR-GARCH and identify the bad-news indicator.
-4. Interpret and test `lambda`.
+4. Interpret and test $\lambda$.
 5. Write EGARCH and explain why log variance guarantees positivity.
 6. Draw or explain NICs for ARCH, GARCH, and GJR-GARCH.
 7. Compute NIC curvature for positive and negative shocks.

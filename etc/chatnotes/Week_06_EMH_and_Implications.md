@@ -1,4 +1,4 @@
-# Week 6: Efficient Market Hypothesis And Implications
+Week 6: Efficient Market Hypothesis And Implications
 
 ## What This Week Is Really About
 
@@ -30,19 +30,21 @@ These threads connect through the same econometric idea: look at what is left un
 
 In Week 5, CAPM and factor models looked clean:
 
-```text
-r_it - r_ft = alpha_i + beta_i * factor_t + e_it
-```
+$$
+r_{it} - r_{ft} = \alpha_{i} + \beta_{i} \cdot factor_t + e_{it}
+$$
 
 The fitted coefficients are useful, but the tests around them depend on the residuals. When we say a beta is statistically significant, or an alpha is not statistically significant, we are relying on standard errors. Those standard errors are only trustworthy if the assumptions behind them are reasonable.
 
 For the CAPM disturbance term, the lecture focuses on three desired properties:
 
-```text
-E(e_it) = 0
-Var(e_it) is constant
-E(e_it * e_i,t-k) = 0 for k = 1, 2, ...
-```
+$$
+\begin{aligned}
+E(e_{it}) &= 0 \\
+\operatorname{Var}(e_{it})\text{ is constant} \\
+E(e_{it} \cdot e_{i,t-k}) &= 0 for k = 1, 2, ...
+\end{aligned}
+$$
 
 In plain English:
 
@@ -81,15 +83,15 @@ An LM test is a regression-based test. The logic is:
 
 Suppose the original model is:
 
-```text
-y_t = alpha + beta*x_t + e_t
-```
+$$
+y_t = \alpha + \beta\cdot x_t + e_t
+$$
 
 After estimating the model, we calculate residuals:
 
-```text
-e_hat_t = y_t - alpha_hat - beta_hat*x_t
-```
+$$
+\hat{e}_t = y_t - \hat{\alpha} - \hat{\beta}\cdot x_t
+$$
 
 Then we ask whether those residuals are predictable from variables they should not be predictable from. If an auxiliary regression explains the residuals or squared residuals, that is evidence of misspecification.
 
@@ -105,37 +107,37 @@ This is why LM tests appear in both model diagnostics and EMH testing. In both c
 
 Homoskedasticity means the residual variance is constant:
 
-```text
-H0: Var(e_it) is constant
-```
+$$
+H_0: \operatorname{Var}(e_{it})\text{ is constant}
+$$
 
 Heteroskedasticity means the variance changes over time or changes with the regressors:
 
-```text
-H1: Var(e_it) is not constant
-```
+$$
+H_1: \operatorname{Var}(e_{it})\text{ is not constant}
+$$
 
 In asset returns, heteroskedasticity is common. Financial markets often have calm periods and volatile periods. Daily, weekly, and monthly returns are especially likely to show changing volatility.
 
 The LM approach tests whether squared residuals can be explained by the regressors. For a simple model, an auxiliary regression might look like:
 
-```text
-e_hat_t^2 = gamma_0 + gamma_1*x_t + gamma_2*x_t^2 + v_t
-```
+$$
+\hat{e}_t^2 = \gamma_{0} + \gamma_{1}\cdot x_t + \gamma_{2}\cdot x_t^2 + v_t
+$$
 
 The test statistic is:
 
-```text
-W = T * R^2
-```
+$$
+W = T \cdot R^2
+$$
 
-where `R^2` comes from the auxiliary regression. Under the null, the statistic is compared with a chi-square distribution.
+where $R^2$ comes from the auxiliary regression. Under the null, the statistic is compared with a chi-square distribution.
 
 The lecture applies this idea to the three-factor CAPM for technology returns. The auxiliary regression produces:
 
-```text
-W = T * R^2 = 1095 * 0.049 = 53.66
-```
+$$
+W = T \cdot R^2 = 1095 \cdot 0.049 = 53.66
+$$
 
 With 3 degrees of freedom, the 1% chi-square critical value is about 11.34. Since 53.66 is much larger, we reject homoskedasticity. The residual variance is not constant.
 
@@ -143,7 +145,7 @@ With 3 degrees of freedom, the 1% chi-square critical value is about 11.34. Sinc
 
 - Heteroskedasticity means residual variance is not constant.
 - A common LM test regresses squared residuals on regressors or their transformations.
-- The statistic is `T * R^2`.
+- The statistic is $T \cdot R^2$.
 - Rejecting homoskedasticity means ordinary OLS standard errors are unreliable.
 
 ## White's Testing Approach
@@ -172,41 +174,45 @@ For example, if a positive residual today tends to be followed by a positive res
 
 The null is:
 
-```text
-H0: no autocorrelation
-```
+$$
+H_0: \text{no autocorrelation}
+$$
 
 The alternative is:
 
-```text
-H1: at least one lagged residual matters
-```
+$$
+H_1: \text{at least one lagged residual matters}
+$$
 
 The LM auxiliary regression uses lagged residuals:
 
-```text
-e_hat_t = gamma_0
-        + gamma_1*e_hat_t-1
-        + gamma_2*e_hat_t-2
-        + ...
-        + v_t
-```
+$$
+\begin{aligned}
+\hat{e}_t &= \gamma_{0} \\
+&\quad + \gamma_{1}\cdot \hat{e}_{t-1} \\
+&\quad + \gamma_{2}\cdot \hat{e}_{t-2} \\
+&\quad + ... \\
+&\quad + v_t
+\end{aligned}
+$$
 
 The test statistic is:
 
-```text
-AR(p) = T * R^2
-```
+$$
+AR(p) = T \cdot R^2
+$$
 
 and it is compared with a chi-square distribution with `p` degrees of freedom.
 
 In the lecture's technology-portfolio example:
 
-```text
-LM test = 9.3622
-df = 2
-p-value = 0.009269
-```
+$$
+\begin{aligned}
+LM test &= 9.3622 \\
+df &= 2 \\
+p-value &= 0.009269
+\end{aligned}
+$$
 
 Since the p-value is below 0.01, we reject no autocorrelation at the 1% level. Residuals are serially correlated.
 
@@ -225,9 +231,9 @@ The point estimates can still be useful. The problem is inference: standard erro
 
 Newey-West standard errors solve this by estimating standard errors that are robust to heteroskedasticity and autocorrelation of unknown form. They are often called HAC standard errors:
 
-```text
-HAC = heteroskedasticity and autocorrelation consistent
-```
+$$
+HAC = \text{heteroskedasticity and autocorrelation consistent}
+$$
 
 The important practical point is:
 
@@ -259,15 +265,15 @@ This creates six portfolios:
 
 SMB is the average return on the small portfolios minus the average return on the big portfolios:
 
-```text
-SMB = average(S/L, S/N, S/H) - average(B/L, B/N, B/H)
-```
+$$
+SMB = \operatorname{average}(S/L, S/N, S/H) - \operatorname{average}(B/L, B/N, B/H)
+$$
 
 HML is the average return on the high book-to-market portfolios minus the average return on the low book-to-market portfolios:
 
-```text
-HML = average(S/H, B/H) - average(S/L, B/L)
-```
+$$
+HML = \operatorname{average}(S/H, B/H) - \operatorname{average}(S/L, B/L)
+$$
 
 This matters because many ETFs target these styles directly. For example, Vanguard has ETFs for large growth, large value, small growth, small value, and so on. The Fama-French style box gives a statistical language for describing those products.
 
@@ -298,30 +304,34 @@ This is not a philosophical question. We can test it with data.
 
 Estimate:
 
-```text
-r_SDS,t = alpha + beta*r_SP500,t + error_t
-```
+$$
+r_{SDS,t} = \alpha + \beta\cdot r_{SP500,t} + \text{error}_t
+$$
 
 For a good daily `-2x` tracker, we would expect:
 
-```text
-beta close to -2
-alpha close to 0
+$$
+\begin{aligned}
+\beta close to -2 \\
+\alpha close to 0 \\
 high R^2
-```
+\end{aligned}
+$$
 
 To test the slope:
 
-```text
-H0: beta = -2
-H1: beta != -2
-```
+$$
+\begin{aligned}
+H_0 &: \beta = -2 \\
+H_1 &: \beta \ne -2
+\end{aligned}
+$$
 
 The test statistic is:
 
-```text
-t = (beta_hat - (-2)) / SE(beta_hat)
-```
+$$
+t = (\hat{\beta} - (-2)) / SE(\hat{\beta})
+$$
 
 This is the same regression logic as CAPM, but the interpretation changes. In CAPM, beta measures market exposure. In the ETF setting, beta measures whether the ETF delivers the exposure it claims.
 
@@ -330,7 +340,7 @@ This is the same regression logic as CAPM, but the interpretation changes. In CA
 - ETF tracking can be tested with a regression.
 - A `-2x` ETF should have beta close to `-2` on daily index returns.
 - Alpha should be close to zero.
-- High `R^2` suggests close daily tracking.
+- High $R^2$ suggests close daily tracking.
 
 ## Efficient Market Hypothesis
 
@@ -362,25 +372,27 @@ If past returns can predict future returns, then weak-form EMH is challenged. If
 
 To test weak-form EMH, the lecture uses a simple return model:
 
-```text
-r_t = mu + e_t
-```
+$$
+r_t = \mu + e_t
+$$
 
 where:
 
-```text
-e_t ~ WN(0, sigma^2)
-```
+$$
+e_t ~ WN(0, \sigma^2)
+$$
 
 White noise means:
 
-```text
-E(e_t) = 0
-Var(e_t) = sigma^2
-Corr(e_t, e_t-k) = 0 for k >= 1
-```
+$$
+\begin{aligned}
+E(e_t) &= 0 \\
+\operatorname{Var}(e_t) &= \sigma^2 \\
+\operatorname{Corr}(e_t, e_t-k) &= 0 for k \ge 1
+\end{aligned}
+$$
 
-This model does not say returns must be zero. It allows a constant average return, `mu`. The important part is that the deviation from the average should not be predictable from past deviations.
+This model does not say returns must be zero. It allows a constant average return, $\mu$. The important part is that the deviation from the average should not be predictable from past deviations.
 
 If returns are white noise around a constant mean, then knowing previous returns does not help forecast future returns on average.
 
@@ -396,9 +408,9 @@ Autocorrelation measures whether a series is related to its own past.
 
 For returns:
 
-```text
-rho(k) = Corr(r_t, r_t-k)
-```
+$$
+\rho(k) = \operatorname{Corr}(r_t, r_t-k)
+$$
 
 If `rho(1)` is positive, high returns tend to be followed by high returns and low returns by low returns. If `rho(1)` is negative, returns tend to reverse.
 
@@ -413,18 +425,20 @@ A correlogram reports autocorrelations for multiple lags. It often includes:
 
 The dashed confidence bands in the plot are approximately:
 
-```text
-+/- 2 / sqrt(T)
-```
+$$
+\pm 2 / \sqrt{T}
+$$
 
 An autocorrelation outside those bands is individually significant at roughly the 5% level.
 
 The Q statistic tests:
 
-```text
-H0: rho_1 = rho_2 = ... = rho_k = 0
-H1: at least one autocorrelation is nonzero
-```
+$$
+\begin{aligned}
+H_0 &: \rho_{1} = \rho_{2} = ... = \rho_{k} = 0 \\
+H_1 &: \text{at least one autocorrelation is nonzero}
+\end{aligned}
+$$
 
 If the p-value is below 0.05, reject no autocorrelation up to that lag.
 
@@ -439,29 +453,31 @@ If the p-value is below 0.05, reject no autocorrelation up to that lag.
 
 For a large sample, if there is no autocorrelation:
 
-```text
-sqrt(T) * rho_hat(k) is approximately N(0, 1)
-```
+$$
+\sqrt{T} \cdot \hat{\rho}(k) \sim N(0, 1)
+$$
 
 To test lag `k`:
 
-```text
-H0: rho(k) = 0
-H1: rho(k) != 0
-```
+$$
+\begin{aligned}
+H_0 &: \rho(k) = 0 \\
+H_1 &: \rho(k) \ne 0
+\end{aligned}
+$$
 
 Reject at the 5% level if:
 
-```text
-|sqrt(T) * rho_hat(k)| > 1.96
-```
+$$
+|\sqrt{T} \cdot \hat{\rho}(k)| > 1.96
+$$
 
 The lecture example compares exchange-rate returns and Apple returns. The exchange-rate series shows stronger evidence of predictability, while Apple has weaker evidence in the simple lag-1 check.
 
 ### Section Summary
 
 - A single autocorrelation can be tested with a normal approximation.
-- The statistic is `sqrt(T) * rho_hat(k)`.
+- The statistic is $\sqrt{T} \cdot \hat{\rho}(k)$.
 - A significant result means returns are predictable at that lag.
 
 ## LM Test For Return Predictability
@@ -470,51 +486,55 @@ The LM autocorrelation test can also be used for EMH.
 
 If returns are demeaned:
 
-```text
-e_t = r_t - r_bar
-```
+$$
+e_t = r_t - \bar{r}
+$$
 
 then test whether current demeaned returns depend on past demeaned returns:
 
-```text
-e_t = gamma_0
-    + gamma_1*e_t-1
-    + gamma_2*e_t-2
-    + ...
-    + v_t
-```
+$$
+\begin{aligned}
+e_t &= \gamma_{0} \\
+&\quad + \gamma_{1}\cdot e_{t-1} \\
+&\quad + \gamma_{2}\cdot e_{t-2} \\
+&\quad + ... \\
+&\quad + v_t
+\end{aligned}
+$$
 
 The hypotheses are:
 
-```text
-H0: gamma_1 = gamma_2 = ... = gamma_k = 0
-H1: at least one gamma differs from zero
-```
+$$
+\begin{aligned}
+H_0 &: \gamma_{1} = \gamma_{2} = ... = \gamma_{k} = 0 \\
+H_1 &: \text{at least one }\\gamma\text{ differs from zero}
+\end{aligned}
+$$
 
 The statistic is:
 
-```text
-AR(k) = T * R^2
-```
+$$
+AR(k) = T \cdot R^2
+$$
 
 and under the null:
 
-```text
-AR(k) ~ chi-square_k
-```
+$$
+AR(k) ~ \chi^2_{k}
+$$
 
 In the lecture's exchange-rate example:
 
-```text
-AR(2) = 3189 * 0.003749 = 11.955
-```
+$$
+AR(2) = 3189 \cdot 0.003749 = 11.955
+$$
 
 This is larger than the 5% chi-square critical value for 2 degrees of freedom, about 5.991, so the null is rejected. There is evidence against weak-form EMH for that return series.
 
 ### Section Summary
 
 - The LM test checks several lags at once.
-- The statistic is `T * R^2` from the auxiliary regression.
+- The statistic is $T \cdot R^2$ from the auxiliary regression.
 - Rejecting means return predictability remains.
 
 ## Variance Ratio Logic
@@ -523,35 +543,35 @@ The variance ratio is another way to test whether returns behave like an unpredi
 
 One-period log return is:
 
-```text
-r_t = log(P_t) - log(P_t-1)
-```
+$$
+r_t = \log(P_t) - \log(P_t-1)
+$$
 
 An `n`-period log return is the sum of `n` one-period returns:
 
-```text
-r_t(n) = r_t + r_t-1 + ... + r_t-(n-1)
-```
+$$
+r_t(n) = r_t + r_{t-1} + ... + r_{t-(n-1)}
+$$
 
 If returns are independent over time, then the variance of the `n`-period return should be approximately `n` times the variance of the one-period return:
 
-```text
-Var[n-period return] = n * Var[1-period return]
-```
+$$
+\operatorname{Var}[n-period return] = n \cdot \operatorname{Var}[1-period return]
+$$
 
 The variance ratio is:
 
-```text
-VR_n = variance of n-period returns / (n * variance of 1-period returns)
-```
+$$
+VR_{n} = variance of n-period returns / (n \cdot variance of 1-period returns)
+$$
 
 Interpretation:
 
 | Variance ratio | Meaning |
 | --- | --- |
-| `VR_n = 1` | No autocorrelation |
-| `VR_n > 1` | Positive autocorrelation |
-| `VR_n < 1` | Negative autocorrelation |
+| $VR_{n} = 1$ | No autocorrelation |
+| $VR_{n} > 1$ | Positive autocorrelation |
+| $VR_{n} < 1$ | Negative autocorrelation |
 
 ### Section Summary
 
@@ -563,28 +583,30 @@ Interpretation:
 
 ### Question 1: Testing Weak-Form EMH With An LM Test
 
-For daily residuals from a four-factor model, an auxiliary regression of residuals on two lags gives `R^2 = 0.0062` using `T = 1320` observations.
+For daily residuals from a four-factor model, an auxiliary regression of residuals on two lags gives $R^2 = 0.0062$ using $T = 1320$ observations.
 
 Hypotheses:
 
-```text
-H0: no residual autocorrelation
-H1: at least one residual autocorrelation is nonzero
-```
+$$
+\begin{aligned}
+H_0 &: \text{no residual autocorrelation} \\
+H_1 &: \text{at least one residual autocorrelation is nonzero}
+\end{aligned}
+$$
 
 Compute:
 
-```text
-TR^2 = 1320 * 0.0062 = 8.184
-```
+$$
+TR^2 = 1320 \cdot 0.0062 = 8.184
+$$
 
 Compare with:
 
-```text
-chi-square_2 = 5.991
-```
+$$
+\chi^2_{2} = 5.991
+$$
 
-Since `8.184 > 5.991`, reject the null. There is evidence of predictability left in the residuals, which is evidence against weak-form EMH for this model and sample.
+Since $8.184 > 5.991$, reject the null. There is evidence of predictability left in the residuals, which is evidence against weak-form EMH for this model and sample.
 
 ### Question 2: Correlogram Interpretation
 
@@ -608,26 +630,28 @@ The implication is that weak-form EMH may not hold over this sample.
 
 An ETF claims to deliver `-2` times the daily return of the S&P 500. The estimated tracking regression is:
 
-```text
-r_ETF,t = 0.0001 - 1.87*r_SP500,t + error_t
-```
+$$
+r_{ETF,t} = 0.0001 - 1.87\cdot r_{SP500,t} + \text{error}_t
+$$
 
-The slope standard error is `0.06`, and `R^2 = 0.92`.
+The slope standard error is `0.06`, and $R^2 = 0.92$.
 
 Test:
 
-```text
-H0: beta = -2
-H1: beta != -2
-```
+$$
+\begin{aligned}
+H_0 &: \beta = -2 \\
+H_1 &: \beta \ne -2
+\end{aligned}
+$$
 
 Statistic:
 
-```text
+$$
 t = [-1.87 - (-2)] / 0.06 = 2.17
-```
+$$
 
-Using 1.96 as the 5% two-sided critical value, reject the exact `-2` tracking claim. The high `R^2` still says the ETF moves closely with the index, but the slope is statistically different from the stated target.
+Using 1.96 as the 5% two-sided critical value, reject the exact `-2` tracking claim. The high $R^2$ still says the ETF moves closely with the index, but the slope is statistically different from the stated target.
 
 ### Question 4: Newey-West Interpretation
 
@@ -659,7 +683,7 @@ You should be able to answer:
 2. Why does heteroskedasticity affect standard errors?
 3. What is autocorrelation?
 4. How does an LM test use an auxiliary regression?
-5. What does `T * R^2` mean in an LM test?
+5. What does $T \cdot R^2$ mean in an LM test?
 6. What do Newey-West standard errors fix?
 7. How are SMB and HML constructed from sorted portfolios?
 8. How would you test whether a `-2x` ETF tracks its target?

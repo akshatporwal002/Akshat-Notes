@@ -1,0 +1,454 @@
+
+
+--- PAGE 1 ---
+Practice Exam (S1-2026)
+Question 1
+1. An investor is interested in allocating his wealth across the following two securities: Apple
+(AAPL) and Microsoft (MSFT).
+(a) Using the R output in Figure 1(a) on AAPL (R_AAPL) and MSFT (R_MSFT) returns
+respectively, what percentage of the investor’s wealth would you advise him to allocate
+to each security?
+(b) Verify your answer to Q1(a) by making use of the R output in Figure 1(b) and the
+optimal weights formulae derived from the risk minimisation problem applied to the
+portfolio consisting of AAPL and MSFT.
+2. Consider the following Fama-French four factor model
+r r = (cid:12) + (cid:12) (r r ) + (cid:12) SMB + (cid:12) HML + (cid:12) MOM + (cid:17) ; (1)
+t ft 0 1 mt ft 2 t 3 t 4 t t
+(cid:0) (cid:0)
+where r denotes monthly returns on the Fama-French durables (DUR) portfolio (includes
+t
+consumer durables – Cars, TVs, Furniture, Household Appliances), (r r ) is the excess
+mt ft
+(cid:0)
+market return (the market factor - MKT-RF), r is the risk free interest rate, SMB is the
+ft
+size factor, HML is the value factor, and MOM is the momentum factor. OLS output from
+estimating (1) over the period January 2005 to February 2023 (a total of 218 observations) is
+shown in Figure 2(a).
+(a) Show the analytical decomposition of total risk into systematic and idiosyncratic risks
+derived from (1), if we assume that (cid:12) = (cid:12) = (cid:12) = (cid:12) = 0 and r is time invariant.
+0 2 3 4 ft
+(b) Using the R output in Figure 2(a), report what fraction of total risk implied by (1) is
+systematic and what fraction is idiosyncratic.
+3. Using the R output of regression (1) in Figure 2(a):
+(a) Interpret the coe¢ cient estimate of the SMB factor. Test whether this coe¢ cient is
+statistically signi…cant at the 1% signi…cance level. Brie‡y comment on your conclusion.
+(b) Test whether the one factor CAPM model is preferred over (1) using the information
+provided in Figures 2(a) and 2(b). What conclusion do you draw?
+(continued)
+
+
+--- PAGE 2 ---
+Figure 1(a)
+Figure 1(b)
+Figure 2(a)
+
+
+--- PAGE 3 ---
+Figure 2(b)
+Statistical tables are provided after the end of each question.
+— — — — — END OF QUESTION 1 — — — — —
+
+
+--- PAGE 4 ---
+Question 2
+Consider the daily price of Apple (AAPL) from 2 January 2020 to 30 April 2025. Let p denote
+t
+the log price of AAPL.
+1. Assume that we model p as:
+t
+p = (cid:22) + p + " (2)
+t t 1 t
+(cid:0)
+where p = 0 and " is white noise with mean 0 and variance (cid:27)2. The Augmented Dickey-Fuller
+0 t
+(ADF) test results applied to p are provided in Figure 3(a). Write the null and alternative
+t
+hypotheses that are implied by this test. What conclusion do you draw about the p process?
+t
+2. We compute the time series of log returns on Apple, r = p p . Let F denote the
+t t t 1 t 1
+(cid:0) (cid:0) (cid:0)
+information set available at time t 1. Suppose r is stationary and follows an AR(1) process:
+t
+(cid:0)
+r = 0:1 + 0:5r + u (3)
+t t 1 t
+(cid:0)
+where u t is a martingale di¤erence sequence (MDS) and V (u t F t 1 ) = 4: Provide numerical
+j (cid:0)
+answers to the following questions where applicable.
+(a) What is the conditional mean of r ?
+t
+(b) Using your answer above, what is the unconditional mean of r ?
+t
+(c) What is V (r t F t 1 )?
+j (cid:0)
+(d) Using your answers above, what is V (r t )?
+(e) Compare your answers to parts (c) and (d). Are they as you would expect? Brie‡y
+explain.
+3. Using Figure 3(b), write down the …tted model for r . Table 1 presents the observed return r ;
+t t
+the residuals u^ obtained from Figure 3(b), and the …tted conditional variance, also obtained
+t
+from Figure 3(b). Assuming that r follows a normal distribution, compute the 95% prediction
+t
+interval for the one-step-ahead forecast (1 May 2025) of r :
+t
+4. Using Figure 3(b) and Table 1, calculate the 1-day-ahead 5% VaR on the $1m investment in
+AAPL stock.
+(continued)
+
+
+--- PAGE 5 ---
+Figure 3(a)
+
+
+--- PAGE 6 ---
+Figure 3(b)
+Table 1
+r (%) u^ Fitted conditional variance
+t t
+29 April 2025 0.734 0.6189 5.2336
+30 April 2025 0.309 0.2660 4.6638
+Statistical tables are provided after the end of each question.
+— — — — — END OF QUESTION 2 — — — — —
+
+
+--- PAGE 7 ---
+Question 3
+Nicky is interested in investing in Volkswagen stock. In order to understand the evolution of
+this security over time, she models its daily log returns, denoted by r , over the period 4 January
+V;t
+2000 to 24 April 2023.
+1. She uses a constant mean equation and conducts an ARCH(5) test on the residuals of this
+model, v^ . The results are shown in Figure 4.
+t
+(a) Provide all steps in the testing procedure. What conclusion do you draw?
+(b) Why do you think Nicky conducted the ARCH test on residuals, v^ , rather than the
+t
+White test? Brie‡y explain the di¤erence between the two tests. [Hint: do not write all
+steps of the testing procedure].
+2. Nicky applies a GARCH(1,1) model to r . Results are shown in Figure 5.
+V;t
+(a) Neatly write the theoretical model that is implied by the results of Figure 5 and verify
+that the parameter estimates comply with the conditions of this model. Why are these
+conditions needed?
+(b) Derive the unconditional skewness of the errors v from the theoretical model in Q3.2(a).
+t
+What conclusion do you draw?
+3. Nicky further applies a GJR-GARCH model to the Volkswagen returns equation, r .
+V;t
+(a) Neatly write the theoretical model corresponding to GJR-GARCH and brie‡y explain
+how this model di¤ers from the GARCH(1,1) theoretical model.
+(b) Which parameters from the GJR-GARCH model determine the curvature of its news
+impact curve (NIC)? Provide the numerical values of the NIC curvature using the infor-
+mation in Figure 6.
+(continued)
+
+
+--- PAGE 8 ---
+Figure 4
+Figure 5
+
+
+--- PAGE 9 ---
+Figure 6
+Statistical tables are provided after the end of each question.
+— — — — — END OF QUESTION 3 — — — — —
+
+
+--- PAGE 10 ---
+Question 4
+An investor runs the following Fama-French four factor model over the period January 2009 to
+December 2019:
+r r = (cid:12) + (cid:12) (r r ) + (cid:12) SMB + (cid:12) HML + (cid:12) MOM + u ; (4)
+M;t ft 0 1 mt ft 2 t 3 t 4 t t
+(cid:0) (cid:0)
+where r denotes monthly returns on the Microsoft security, (r r ) is the excess market return
+M;t mt ft
+(cid:0)
+(the market factor - MKT-RF), r is the risk free interest rate, SMB is the size factor, HML is the
+ft
+value factor, and MOM is the momentum factor.
+1. Set up a test on the residuals in (4), u^ , to verify whether the E¢ cient Market Hypothesis
+t
+holds.
+2. Based on the results of Figure 7 what conclusion do you draw for the selected time period?
+3. What are the three forms of EMH? How do they di¤er from each other? Brie‡y explain.
+Figure 7
+Statistical tables are provided after the end of each question.
+— — — — — END OF QUESTION 4 — — — — —
+
+
+--- PAGE 11 ---
+Question 5
+A researcher is interested in modelling the Nikkei index daily log returns over the period from 5
+January 2000 to 8 May 2020.
+1. She uses an MA(1) model and considers an ARCH(5) speci…cation for the variance equation.
+The estimation results from this model are shown in Figure 8. Write the theoretical model
+implied by the regression output in Figure 8.
+2. She then uses a constant mean equation and considers an ARCH(5) speci…cation for the
+variance equation. The estimation results from this ARCH(5) model are shown in Figure 9.
+Write the theoretical model implied by the regression output in Figure 9.
+3. She subsequently considers a GARCH speci…cation and re-estimates her model. The results
+are shown in Figure 10. Using Figures 9 and 10, evaluate which of the ARCH and GARCH
+models you would opt for. Explain your reasoning and the statistics that you used.
+Figure 8
+
+
+--- PAGE 12 ---
+Figure 9
+
+
+--- PAGE 13 ---
+Figure 10
+Statistical tables are provided after the end of each question.
+— — — — — END OF QUESTION 5 — — — — —
+
+
+--- PAGE 14 ---
+STATISTICAL TABLES
+(continued)
+
+
+--- PAGE 15 ---
+(continued)
+
+
+--- PAGE 16 ---
+TABLE G.2 Critical Values of the tDistribution
+Significance Level
+1-Tailed: .10 .05 .025 .01 .005
+2-Tailed: .20 .10 .05 .02 .01
+1 3.078 6.314 12.706 31.821 63.657
+2 1.886 2.920 4.303 6.965 9.925
+3 1.638 2.353 3.182 4.541 5.841
+4 1.533 2.132 2.776 3.747 4.604
+5 1.476 2.015 2.571 3.365 4.032
+6 1.440 1.943 2.447 3.143 3.707
+7 1.415 1.895 2.365 2.998 3.499
+8 1.397 1.860 2.306 2.896 3.355
+9 1.383 1.833 2.262 2.821 3.250
+10 1.372 1.812 2.228 2.764 3.169
+11 1.363 1.796 2.201 2.718 3.106
+12 1.356 1.782 2.179 2.681 3.055
+e
+13 1.350 1.771 2.160 2.650 3.012
+g
+r 14 1.345 1.761 2.145 2.624 2.977
+e
+15 1.341 1.753 2.131 2.602 2.947
+e
+s 16 1.337 1.746 2.120 2.583 2.921
+17 1.333 1.740 2.110 2.567 2.898
+0 18 1.330 1.734 2.101 2.552 2.878
+19 1.328 1.729 2.093 2.539 2.861
+F 20 1.325 1.725 2.086 2.528 2.845
+r
+21 1.323 1.721 2.080 2.518 2.831
+e
+22 1.321 1.717 2.074 2.508 2.819
+e
+d 23 1.319 1.714 2.069 2.500 2.807
+0 24 1.318 1.711 2.064 2.492 2.797
+25 1.316 1.708 2.060 2.485 2.787
+26 1.315 1.706 2.056 2.479 2.779
+27 1.314 1.703 2.052 2.473 2.771
+28 1.313 1.701 2.048 2.467 2.763
+29 1.311 1.699 2.045 2.462 2.756
+30 1.310 1.697 2.042 2.457 2.750
+40 1.303 1.684 2.021 2.423 2.704
+60 1.296 1.671 2.000 2.390 2.660
+90 1.291 1.662 1.987 2.368 2.632
+120 1.289 1.658 1.980 2.358 2.617
+1.282 1.645 1.960 2.326 2.576
+00
+Examples: The 1 % critical value for a one-tailed test with 25 df is 2.485. The 5% critical value for a two-tailed test with large
+(> 120) dfis 1.96.
+Source: This table was generated using the Stata® function invttail.
+(continued)
+
+
+--- PAGE 17 ---
+TABLE G.3a 10% Critical Values of the F Distribution
+Numerator Degrees of Freedom
+1 2 3 4 5 6 7 8 9 10
+10 3.29 2.92 2.73 2.61 2.52 2.46 2.41 2.38 2.35 2.32
+11 3.23 2.86 2.66 2.54 2.45 2.39 2.34 2.30 2.27 2.25
+D
+12 3.18 2.81 2.61 2.48 2.39 2.33 2.28 2.24 2.21 2.19
+e
+n 13 3.14 2.76 2.56 2.43 2.35 2.28 2.23 2.20 2.16 2.14
+0 14 3.10 2.73 2.52 2.39 2.31 2.24 2.19 2.15 2.12 2.10
+m
+i 15 3.07 2.70 2.49 2.36 2.27 2.21 2.16 2.12 2.09 2.06
+n 16 3.05 2.67 2.46 2.33 2.24 2.18 2.13 2.09 2.06 2.03
+a
+17 3.03 2.64 2.44 2.31 2.22 2.15 2.10 2.06 2.03 2.00
+18 3.01 2.62 2.42 2.29 2.20 2.13 2.08 2.04 2.00 1.98
+0
+r 19 2.99 2.61 2.40 2.27 2.18 2.11 2.06 2.02 1.98 1.96
+20 2.97 2.59 . 2.38 2.25 2.16 2.09 2.04 2.00 1.96 1.94
+D
+21 2.96 2.57 2.36 2.23 2.14 2.08 2.02 1.98 1.95 1.92
+e
+g 22 2.95 2.56 2.35 2.22 2.13 2.06 2.01 1.97 1.93 1.90
+r 23 2.94 2.55 2.34 2.21 2.11 2.05 1.99 1.95 1.92 1.89
+e
+24 2.93 2.54 2.33 2.19 2.10 2.04 1.98 1.94 1.91 1.88
+e
+s 25 2.92 2.53 2.32 2.18 2.09 2.02 1.97 1.93 1.89 1.87
+26 2.91 2.52 2.31 2.17 2.08 2.01 1.96 1.92 1.88 1.86
+0 27 2.90 2.51 2.30 2.17 2.07 2.00 1.95 1.91 1.87 1.85
+28 2.89 2.50 2.29 2.16 2.06 2.00 1.94 1.90 1.87 1.84
+F 29 2.89 2.50 2.28 2.15 2.06 1.99 1.93 1.89 1.86 1.83
+r
+30 2.88 2.49 2.28 2.14 2.05 1.98 1.93 1.88 1.85 1.82
+e
+40 2.84 2.44 2.23 2.09 2.00 1.93 1.87 1.83 1.79 1.76
+e
+d 60 2.79 2.39 2.18 2.04 1.95 1.87 1.82 1.77 1.74 1.71
+0 90 2.76 2.36 2.15 2.01 1.91 1.84 1.78 1.74 1.70 1.67
+m
+120 2.75 2.35 2.13 1.99 1.90 1.82 1.77 1.72 1.68 1.65
+00 2.71 2.30 2.08 1.94 1.85 1.77 1.72 1.67 1.63 1.60
+Example: The 10% critical value for numerator df = 2 and denominator df = 40 is 2.44.
+Source: This table was generated using the Stata® function invFtail.
+(continued)
+
+
+--- PAGE 18 ---
+TABLE G.Jb 5% Critical Values of the f Distribution
+Numerator Degrees of Freedom
+1 2 3 4 5 6 7 8 9 10
+10 4.96 4.10 3.71 3.48 3.33 3.22 3.14 3.07 3.02 2.98
+D
+11 4.84 3.98 3.59 3.36 3.20 3.09 3.01 2.95 2.90 2.85
+e
+n 12 4.75 3.89 3.49 3.26 3.11 3.00 2.91 2.85 2.80 2.75
+0 13 4.67 3.81 3.41 3.18 3.03 2.92 2.83 2.77 2.71 2.67
+m 14 4.60 3.74 3.34 3.11 2.96 2.85 2.76 2.70 2.65 2.60
+15 4.54 3.68 3.29 3.06 2.90 2.79 2.71 2.64 2.59 2.54
+n
+16 4.49 3.63 3.24 3.01 2.85 2.74 2.66 2.59 2.54 2.49
+a
+t 17 4.45 3.59 3.20 2.96 2.81 2.70 2.61 2.55 2.49 2.45
+0 18 4.41 3.55 3.16 2.93 2.77 2.66 2.58 2.51 2.46 2.41
+r 19 4.38 3.52 3.13 2.90 2.74 2.63 2.54 2.48 2.42 2.38
+20 4.35 3.49 3.10 2.87 2.71 2.60 2.51 2.45 2.39 2.35
+D
+21 4.32 3.47 3.07 2.84 2.68 2.57 2.49 2.42 2.37 2.32
+22 4.30 3.44 3.05 2.82 2.66 2.55 2.46 2.40 2.34 2.30
+g
+r 23 4.28 3.42 . 3.03 2.80 2.64 2.53 2.44 2.37 2.32 2.27
+e 24 4.26 3.40 3.01 2.78 2.62 2.51 2.42 2.36 2.30 2.25
+e 25 4.24 3.39 2.99 2.76 2.60 2.49 2.40 2.34 2.28 2.24
+26 4.23 3.37 2.98 2.74 2.59 2.47 2.39 2.32 2.27 2.22
+27 4.21 3.35 2.96 2.73 2.57 2.46 2.37 2.31 2.25 2.20
+0
+f 28 4.20 3.34 2.95 2.71 2.56 2.45 2.36 2.29 2.24 2.19
+29 4.18 3.33 2.93 2.70 2.55 2.43 2.35 2.28 2.22 2.18
+F 30 4.17 3.32 2.92 2.69 2.53 2.42 2.33 2.27 2.21 2.16
+r 40 4.08 3.23 2.84 2.61 2.45 2.34 2.25 2.18 2.12 2.08
+e
+60 4.00 3.15 2.76 2.53 2.37 2.25 2.17 2.10 2.04 1.99
+e
+90 3.95 3.10 2.71 2.47 2.32 2.20 2.11 2.04 1.99 1.94
+d
+0 120 3.92 3.07 2.68 2.45 2.29 2.17 2.09 2.02 1.96 1.91
+m 3.84 3.00 2.60 2.37 2.21 2.10 2.01 1.94 1.88 1.83
+00
+Example: The 5% critical value for numerator df = 4 and large denominator df( oo) is 2.37.
+Source: This table was generated using the Stata® function invFtail.
+(continued)
+
+
+--- PAGE 19 ---
+TABLE G.3c 1 % Critical Values of the F Distribution
+Numerator Degrees of Freedom
+1 2 3 4 5 6 7 8 9 10
+10 10.04 7.56 6.55 5.99 5.64 5.39 5.20 5.06 4.94 4.85
+D 11 9.65 7.21 6.22 5.67 5.32 5.07 4.89 4.74 4.63 4.54
+e 12 9.33 6.93 5.95 5.41 5.06 4.82 4.64 4.50 4.39 4.30
+n
+13 9.07 6.70 5.74 5.21 4.86 4.62 4.44 4.30 4.19 4.10
+0
+m 14 8.86 6.51 5.56 5.04 4.69 4.46 4.28 4.14 4.03 3.94
+i 15 8.68 6.36 5.42 4.89 4.56 4.32 4.14 4.00 3.89 3.80
+n 16 8.53 6.23 5.29 4.77 4.44 4.20 4.03 3.89 3.78 3.69
+17 8.40 6.11 5.18 4.67 4.34 4.10 3.93 3.79 3.68 3.59
+t
+18 8.29 6.01 5.09 4.58 4.25 4.01 3.84 3.71 3.60 3.51
+0
+r 19 8.18 5.93 5.01 4.50 4.17 3.94 3.77 3.63 3.52 3.43
+20 8.10 5.85 4.94 4.43 4.10 3.87 3.70 3.56 3.46 3.37
+D
+21 8.02 5.78 4.87 4.37 4.04 3.81 3.64 3.51 3.40 3.31
+e
+22 7.95 5.72 4.82 4.31 3.99 3.76 3.59 3.45 3.35 3.26
+. g
+r 23 7.88 5.66 4.76 ·4.26 3.94 3.71 3.54 3.41 3.30 3.21
+e 24 7.82 5.61 4.72 4.22 3.90 3.67 3.50 3.36 3.26 3.17
+e
+25 7.77 5.57 4.68 4.18 3.85 3.63 3.46 3.32 3.22 3.13
+s
+26 7.72 5.53 4.64 4.14 3.82 3.59 3.42 3.29 3.18 3.09
+0 27 7.68 5.49 4.60 4.11 3.78 3.56 3.39 3.26 3.15 3.06
+f 28 7.64 5.45 4.57 4.07 3.75 3.53 3.36 3.23 3.12 3.03
+29 7.60 5.42 4.54 4.04 3.73 3.50 3.33 3.20 3.09 3.00
+F
+r 30 7.56 5.39 4.51 4.02 3.70 3.47 3.30 3.17 3.07 2.98
+e 40 7.31 5.18 4.31 3.83 3.51 3.29 3.12 2.99 2.89 2.80
+e 60 7.08 4.98 4.13 3.65 3.34 3.12 2.95 2.82 2.72 2.63
+90 6.93 4.85 4.01 3.54 3.23 3.01 2.84 2.72 2.61 2.52
+0
+m 120 6.85 4.79 3.95 3.48 3.17 2.96 2.79 2.66 2.56 2.47
+00 6.63 4.61 3.78 3.32 3.02 2.80 2.64 2.51 2.41 2.32
+Example: The I% critical value for numerator df = 3 and denominator df = 60 is 4.13.
+Source: This table was generated using the Stata® function invFtail.
+(continued)
+
+
+--- PAGE 20 ---
+TABLE G.4 Critical Values of the Chi-Square Distribution
+Significance Level
+.10 .05 .01
+1 2.71 3.84 6.63
+2 4.61 5.99 9.21
+3 6.25 7.81 11.34
+4 7.78 9.49 13.28
+5 9.24 11.07 15.09
+6 10.64 12.59 16.81
+7 12.02 14.07 18.48
+D
+8 13.36 15.51 20.09
+e
+g 9 14.68 16.92 21.67
+r 10 15.99 18.31 23.21
+e 11 17.28 19.68 24.72
+e 12 18.55 21.03 26.22
+s
+13 19.81 22.36 27.69
+14 21.06 23.68 29.14
+0
+15 22.31 25.00 30.58
+f
+16 23.54 26.30 32.00
+F 17 24.77 27.59 33.41
+r 18 25.99 28.87 34.81
+e 19 27.20 30.14 36.19
+e 20 28.41 31.41 37.57
+21 29.62 32.67 38.93
+0
+22 30.81 33.92 40.29
+23 32.01 35.17 41.64
+24 33.20 36.42 42.98
+25 34.38 37.65 44.31
+26 35.56 38.89 45.64
+27 36.74 40.11 46.96
+28 37.92 41.34 48.28
+29 39.09 42.56 49.59
+30 40.26 43.77 50.89
+Example: The 5% critical value with df = 8 is 15.51.
+Source: This table was generated using the Stata® function invchi2tail.

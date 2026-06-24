@@ -1,0 +1,481 @@
+
+
+--- PAGE 1 ---
+S1-2026 Solutions
+Question 1
+1.
+a. The slope coe¢ cient on the excess return of AAPL over MSFT denotes the optimal weight to be
+allocated to MSFT. The investor ought to allocate 78:41% of their wealth to MSFT and the
+remaining 100% 78:41% = 21:59% of their wealth to AAPL.
+(cid:0)
+b. We have:
+(cid:27)2 (cid:27)
+w = MSF T (cid:0) MSF T;AAP L
+AAP L (cid:27)2 + (cid:27)2 2(cid:27)
+AAP L MSF T (cid:0) MSF T;AAP L
+0:0073 0:0041
+= (cid:0)
+0:0158 + 0:0073 2 0:0041
+(cid:0) (cid:2)
+= 0:2159
+and
+w = 1 w
+MSF T AAP L
+(cid:0)
+= 1 0:2159 = 0:7841:
+(cid:0)
+2.
+a. We have:
+r r = (cid:12) (r r ) + (cid:17)
+t ft 1 mt ft t
+(cid:0) (cid:0)
+since (cid:12) = (cid:12) = (cid:12) = (cid:12) = 0: Because r is non-stochastic (as r is time invariant) and
+0 2 3 4 ft ft
+cov (r r ; (cid:17) ) = 0,
+mt ft t
+(cid:0)
+var (r ) = (cid:12)2var (r ) + var ((cid:17) ) :
+t 1 mt t
+This shows that the variance of the return on a stock r consists of two parts: a part related
+t
+to the variance of the market index and an idiosyncratic part.
+b. The fraction of total risk accounting for systematic (non-diversi…able risk) can be deduced by
+the R2 of regression. We have that R2 = 0:6951 so that 69.51% of total variation in (r r )
+t ft
+(cid:0)
+corresponds to systematic risk, while the remaining 1 R2 0:3049 (30.49%) of total return
+(cid:0) (cid:25)
+variation is portfolio speci…c.
+3.
+a. The coe¢ cient estimate attached to the size (SMB) factor stands at 0:549 > 0 suggesting that
+the durables portfolio behaves more like a small-stock portfolio. To check the signi…cance of
+this factor in explaining the variation in excess returns of this portfolio, we test the following
+hypothesis:
+H : (cid:12) = 0 vs (cid:12) = 0
+0 2 2
+6
+and use the t-statistic:
+(cid:12)^ 0 0:54912
+t-stat = 2 (cid:0) = = 3:45:
+se (cid:12)^ 0:15918
+2
+(cid:16) (cid:17)
+This statistic follows a t-distribution under the null. Comparing with the (2-tailed) critical
+value from the t-distribution at 1% signi…cance level (and degrees of freedom (218-4-1=213
+1
+degrees of freedom) we have that t-stat > 2:576, and we conclude that we reject the null. We
+j j
+conclude that the SMB factor makes a signi…cant contribution in explaining the dependent
+variable.
+
+
+--- PAGE 2 ---
+b. In order to test for joint signi…cance for the four factors over that with one (the market factor),
+we de…ne the following null and alternative hypotheses:
+H : (cid:12) = (cid:12) = (cid:12) = 0
+0 2 3 4
+H : at least one is not zero
+1
+In the R output,
+RSS
+1
+Residual standard error =
+1
+T k 1
+r (cid:0) (cid:0)
+RSS
+1
+5:33 =
+218 4 1
+r (cid:0) (cid:0)
+RSS = 6051:66
+1
+and
+RSS
+0
+Residual standard error =
+0
+T k 1
+r (cid:0) (cid:0)
+RSS
+0
+5:728 =
+218 1 1
+r (cid:0) (cid:0)
+RSS = 7087:26
+0
+and use the J-statistic:
+RSS RSS
+0 1
+J = (cid:0)
+RSS = (T k 1)
+1
+(cid:0) (cid:0)
+7087:26 6051:660
+= (cid:0) = 36:45
+6051:660= (218 4 1)
+(cid:0) (cid:0)
+where RSS and RSS denote the residual sum of squares from running the constrained
+0 1
+version of (1) (CAPM - three restrictions imposed), and (1) without restrictions, respectively.
+T denotes the number of observations, and k are the number of regressors in the unrestricted
+model. This statistic follows a chi-squared distribution with 3 degrees of freedom under the
+null. We compare the calculated value for J with the relevant critical value from the (cid:31)2-
+3
+distribution at 5% signi…cance level (= 7:81). J-calculated is larger than the chi-squared
+critical value so we reject the null, i.e. the 4FF speci…cation explains more adequately than
+the CAPM model the systematic risk inherent in the durables portfolio excess returns.
+
+
+--- PAGE 3 ---
+Question 2
+1. In order to test for existence of a unit root in p we conduct an Augmented Dickey Fuller test
+t
+which uses the following regression:
+p 1
+(cid:0)
+(cid:1)p = ! + ! t + (cid:30) p + (cid:12) (cid:1)p + " ;
+t 0 1 c1 t 1 i t i t
+(cid:0) (cid:0)
+i=1
+X
+We have the following null and alternative hypotheses:
+H : (cid:30) = 0
+0 c1
+H : (cid:30) < 0
+1 c1
+The ADF t-ratio is then given by:
+(cid:30)^
+ADF T = c1 :
+(cid:17) se (cid:30)^
+c1
+(cid:16) (cid:17)
+Given the results in Figure 3(a), we have:
+(cid:30)^
+ADF T = c1 = 2:402
+(cid:17) se (cid:30)^ (cid:0)
+c1
+(cid:16) (cid:17)
+The 5% critical value is tau3 = 3:41. Since ADF = 2:402 > 3:41 the null hypothesis of
+(cid:0) (cid:0) (cid:0)
+existence of a unit root cannot be rejected. The process p appears to be non-stationary.
+t
+2. Since u is an MDS, E (u F ) = 0:
+t t t 1
+j (cid:0)
+(a) The conditional mean
+E (r F ) = E (0:1 + 0:5r + u F )
+t t 1 t 1 t t 1
+j (cid:0) (cid:0) j (cid:0)
+= E (0:1 F ) + E (0:5r F ) + E (u F )
+t 1 t 1 t 1 t t 1
+j (cid:0) (cid:0) j (cid:0) j (cid:0)
+= 0:1 + 0:5r
+t 1
+(cid:0)
+(b) The unconditional mean (using LIE)
+E (r ) = E (E (r F ))
+t t t 1
+j (cid:0)
+= E (0:1 + 0:5r )
+t 1
+(cid:0)
+= 0:1 + 0:5E (r )
+t 1
+(cid:0)
+= 0:1 + 0:5E (r ) r is stationary
+t t
+0:1
+E (r ) = = 0:2
+t
+1 0:5
+(cid:0)
+(c) The conditional variance
+V (r t F t 1 ) = V (0:1 + 0:5r t 1 + u t F t 1 )
+j (cid:0) (cid:0) j (cid:0)
+= V (u t F t 1 )
+j (cid:0)
+= 4
+since r is known given F :
+t 1 t 1
+(cid:0) (cid:0)
+
+
+--- PAGE 4 ---
+(d) The unconditional variance
+V (r t ) = E (V (r t F t 1 )) + V (E (r t F t 1 ))
+j (cid:0) j (cid:0)
+= E (4) + V (0:1 + 0:5r t 1 )
+(cid:0)
+= 4 + 0:52 V (r t 1 )
+(cid:0)
+= 4 + 0:52 V (r t ) r t is stationary
+4
+V (r t ) = 1 0:52 = 5:333
+(cid:0)
+(e) Yes, because using F t 1 reduces the uncertainty about r t ; so V (r t F t 1 ) < V (r t ).
+(cid:0) j (cid:0)
+3. The …tted model is an AR(1)-GARCH(1,1) model
+r = 0:0899 0:0788(r 0:0899) + u^
+t t 1 t
+(cid:0) (cid:0) (cid:0)
+(cid:27)^2 = 0:1634 + 0:1038u^2 + 0:8488(cid:27)^2
+t t 1 t 1
+(cid:0) (cid:0)
+(Week 9) Alternatively the mean equation can be written in the usual intercept form
+r = c^ 0:0788r + u^
+t t 1 t
+(cid:0) (cid:0)
+where
+c^
+(cid:22)^ =
+1 (cid:30)^
+1
+(cid:0)
+and so
+c^ = (cid:22)^ 1 (cid:30)^ = 0:0899 (1 + 0:0788) = 0:0970
+1
+(cid:0)
+(cid:16) (cid:17)
+and so
+r = 0:0970 0:0788r + u^
+t t 1 t
+(cid:0) (cid:0)
+The 1-step ahead forecasts are
+E (r F ) = 0:0899 0:0788(r 0:0899)
+t+1 t t
+j (cid:0) (cid:0)
+= 0:0899 0:0788(0:309 0:0899)
+(cid:0) (cid:0)
+= 0:0727%
+Alternatively using r = 0:0970 0:0788r + u^ ; the 1-step ahead forecasts are
+t t 1 t
+(cid:0) (cid:0)
+E (r F ) = 0:0970 0:0788r
+t+1 t T
+j (cid:0)
+= 0:0970 0:0788(0:309) = 0:0727%
+(cid:0)
+And
+E (cid:27)^2 F = 0:1634 + 0:1038u^2 + 0:8488(cid:27)^2
+t+1 t t t
+j
+= 0:1634 + 0:1038 0:26602 + 0:8488 (4:6638)
+(cid:0) (cid:1)
+= 4:1296
+(cid:0) (cid:1)
+The 95% prediction interval of r is
+t
+0:0727 1:96p4:1296
+(cid:6)
+giving the interval
+[ 3:9104% ; 4:0557%]
+(cid:0)
+Note: Minor variations in answers may occur due to rounding.
+
+
+--- PAGE 5 ---
+4. The 1-day-ahead 5% VaR is
+q = 0:0727 + p4:1296 ( 1:645)
+0:05
+(cid:0)
+= 3:2701% [note: %]
+(cid:0)
+and so
+VaR = 1; 000; 000 ( 0:032701)
+0:05
+j (cid:0) j
+= $32; 701
+Note: Minor variations in answers may occur due to rounding.
+
+
+--- PAGE 6 ---
+Question 3
+1.
+a. After running the constant mean equation:
+r = c + (cid:23) ;
+V;t t
+we consider the following auxiliary regression:
+(cid:23)^2 = (cid:13) + (cid:13) (cid:23)^2 + (cid:13) (cid:23)^2 + : : : + (cid:13) (cid:23)^2 + (cid:17) :
+t 0 1 t 1 2 t 2 5 t 5 t
+(cid:0) (cid:0) (cid:0)
+We test the null hypothesis:
+H : (cid:13) = (cid:13) = : : : = (cid:13) = 0 [No ARCH]
+0 1 2 5
+vs
+H : At least one di¤ers from zero [ARCH]
+1
+The test statistic is given by:
+ARCH (5) = T R2 = 1135:6
+where R2 is the …t of the auxiliary regression and T is the sample size. This follows a (cid:31)2
+5
+distribution asymptotically. From the results of Figure 4 there is evidence that the null of
+no ARCH e¤ects is rejected at 1%, 5% and 10% signi…cance level (when comparing to the
+respective critical values and/or using the p-values). This implies that the investor can improve
+her modelling strategy which includes a conditional variance equation for this process using
+an ARCH model or generalisation thereof.
+b. Unlike the ARCH test, the White procedure tests for heteroskedasticity that is not linked to past
+information (F ) but is related to the explanatory variables included in the model.
+t 1
+(cid:0)
+2.
+a. We have:
+r = c + (cid:23) ;
+V;t t
+(cid:23) = (cid:27) " ; " i:i:d:N (0; 1)
+t t t t
+(cid:24)
+(cid:27)2 = a + a (cid:23)2 + (cid:12) (cid:27)2
+t 0 1 t 1 1 t 1
+(cid:0) (cid:0)
+The model requires that a ; a ; (cid:12) > 0 to ensure that (cid:27)2 > 0, and a +(cid:12) < 1, to ensure that the
+0 1 1 t 1 1
+unconditional variance V ((cid:23) ) exists. From the results of Figure 5 we have that a^ = 0:000009,
+t 0
+a^ = 0:08078663; (cid:12)^ = 0:9040081; and a^ + (cid:12)^ = 0:9848 < 1; ie. the estimates comply with
+1 1 1 1
+the conditions of the model.
+b. From the LIE we have that:
+E (cid:23)3 = E E (cid:23)3 F
+t t t 1
+j (cid:0)
+and since (cid:23) t F t 1 N 0; (cid:27)2 t and he(cid:0)nce(cid:1) E (cid:23)3 t(cid:2) F t(cid:0) 1 = 0.(cid:1)(cid:3)Then,
+j (cid:0) (cid:24) j (cid:0)
+(cid:0) E(cid:1) (cid:23)3 = E E (cid:0)(cid:23)3 F (cid:1) = E [0] = 0;
+t t t 1
+j (cid:0)
+hence the unconditional distri(cid:0)but(cid:1)ion is (cid:2)sym(cid:0) metric.(cid:1)(cid:3)(Week 2) The unconditional skewness of
+v is
+t
+E [(cid:23) E ((cid:23) )]3 E (cid:23)3
+t t t
+(cid:0) = = 0
+V ((cid:23) )3=2 V ((cid:23) )3=2
+t (cid:2)t (cid:3)
+because E (cid:23)3 = 0 and E (v ) = E (E (v F )) = 0:
+t t t t 1
+j (cid:0)
+(cid:2) (cid:3)
+
+
+--- PAGE 7 ---
+3.
+a. We have:
+r = c + (cid:23) ;
+V;t t
+(cid:23) = (cid:27) " ; " i:i:d:N (0; 1)
+t t t t
+(cid:24)
+(cid:27)2 = a + a (cid:23)2 + (cid:21) I (cid:23)2 + (cid:12) (cid:27)2
+t 0 1 t 1 t 1 t 1 1 t 1
+(cid:0) (cid:0) (cid:0) (cid:0)
+(cid:0) (cid:1)
+and
+1, if (cid:23) 0
+I t 1 = 0, oth t e (cid:0) r 1 w (cid:20) ise :
+(cid:0)
+(cid:26)
+Compared with the GARCH(1,1) model, (cid:21) > 0 implies that negative news have a larger impact
+on volatility than positive news, indicating a leverage/asymmetric volatility e¤ect.
+b. The NIC for the GJR-GARCH(1,1,1) model can be written as:
+A + a (cid:23)2 , if (cid:23) > 0
+(cid:27)2 = 1 t 1 t 1
+t A + (a + (cid:21))(cid:0)(cid:23)2 , if (cid:0) (cid:23) 0
+(cid:26) 1 t (cid:0) 1 t (cid:0) 1 (cid:20)
+where
+a
+0
+A = a + (cid:12) :
+0 1 1 (a + (cid:21)=2) (cid:12)
+1 1
+(cid:0) (cid:0)
+With a ; (cid:21) 0 and a + (cid:21) 0, it is clear that the curvature of the NIC changes depending
+1 1
+(cid:21) (cid:21)
+on whether we have a positive or negative shock materialising. More precisely, it will be
+steeper (a + (cid:21)) when (cid:23) < 0 and ‡atter a when (cid:23) > 0. This is con…rmed by the
+1 t 1 1 t 1
+(cid:0) (cid:0)
+numerical values of these parameters from the results of Figure 6. The NIC slope amounts to
+a^ + (cid:21)^ = (0:05486562 + 0:05483184) = 0:1097 when (cid:23) < 0 and a^ = 0:05486562 when
+1 t 1 1
+(cid:0)
+(cid:23)(cid:16) > 0(cid:17). Since (cid:21)^ > 0 the news impact curve is steeper for negative shocks than for positive
+t 1
+(cid:0)
+shocks. This implies that negative shocks increase conditional volatility more than positive
+shocks of the same magnitude.
+
+
+--- PAGE 8 ---
+Question 4
+1. We run the following auxiliary regression:
+u^ = (cid:13) + (cid:13) (r r ) + (cid:13) SMB + (cid:13) HML + (cid:13) MOM + (cid:26) u^ + (cid:26) u^ + : : : + (cid:26) u^ + " ;
+t 0 1 mt ft 2 t 3 t 4 t 1 t 1 2 t 2 p t p t
+(cid:0) (cid:0) (cid:0) (cid:0)
+or
+u^ = (cid:13) + (cid:26) u^ + (cid:26) u^ + : : : + (cid:26) u^ + " ;
+t 0 1 t 1 2 t 2 p t p t
+(cid:0) (cid:0) (cid:0)
+where lag length p = 2. We then test the following null hypothesis:
+H : (cid:26) = (cid:26) = : : : = (cid:26) = 0
+0 1 2 p
+versus
+H : at least one is not zero
+1
+The relevant statistic is AR(p) = T R2 where R2 is the R-squared of the auxiliary regression.
+This follows a (cid:31)2 distribution with p degrees of freedom under the null. If the null hypothesis
+is rejected then this is indication that the EMH does not hold. Otherwise, we have evidence
+that the EMH holds over this sample period.
+2. From the results of Figure 7, p is set to 2 and AR(2) = T R2 = 64:641. Comparing this with
+the (cid:31)2 distribution with 2 degrees of freedom at 5% signi…cance level (=5.99), it is clear that
+AR(2) > (cid:31)2 and the null hypothesis is rejected. Therefore, the EMH does not hold over this
+2
+sample period.
+3. There are three versions of the EMH. They di¤er from each other in terms of the information set
+on which they are de…ned. We have: (i) the weak form: prices re‡ect the information in all
+past prices; (ii) semi-strong form: prices re‡ect all publicly available information; (iii) strong
+form: prices re‡ect all acquirable information.
+
+
+--- PAGE 9 ---
+Question 5
+1. Denoting the Nikkei log returns by r , the model is written as:
+t
+r = (cid:30) + " + (cid:18) "
+t 0 t 1 t 1
+(cid:0)
+" = (cid:27) u ; u i:i:d:N (0; 1)
+t t t t
+(cid:24)
+(cid:27)2 = a + a "2 + a "2 + a "2 + a "2 + a "2 ;
+t 0 1 t 1 2 t 2 3 t 3 4 t 4 5 t 5
+(cid:0) (cid:0) (cid:0) (cid:0) (cid:0)
+and hence
+r = 0:0531 + ^" 0:0224^"
+t t t 1
+(cid:0) (cid:0)
+(cid:27)^2 = 0:7295 + 0:1074^"2 + 0:1992^"2 + 0:1671^"2 + 0:1111^"2 + 0:1160^"2
+t t 1 t 2 t 3 t 4 t 5
+(cid:0) (cid:0) (cid:0) (cid:0) (cid:0)
+2. The model is written as:
+r = c + " ;
+t t
+" = (cid:27) u ; u i:i:d:N (0; 1)
+t t t t
+(cid:24)
+(cid:27)2 = a + a "2 + a "2 + a "2 + a "2 + a "2 ;
+t 0 1 t 1 2 t 2 3 t 3 4 t 4 5 t 5
+(cid:0) (cid:0) (cid:0) (cid:0) (cid:0)
+and hence
+r = 0:0535 + ^"
+t t
+(cid:27)^2 = 0:7310 + 0:1073^"2 + 0:1981^"2 + 0:1685^"2 + 0:1109^"2 + 0:1150^"2
+t t 1 t 2 t 3 t 4 t 5
+(cid:0) (cid:0) (cid:0) (cid:0) (cid:0)
+3. We notice that models GARCH and ARCH are non-nested since there is no set of restrictions
+on the parameters of the GARCH model that can be imposed to obtain the ARCH model. For
+this reason comparison between the performance of the two models needs to be determined by
+use of the Akaike Information Criterion (AIC). Comparing the AIC from Figures 9 and 10 we
+see that ARCH has a value of 3.429337 and GARCH has a value of 3.386934. The GARCH
+model outperforms since it has the lowest AIC reading.

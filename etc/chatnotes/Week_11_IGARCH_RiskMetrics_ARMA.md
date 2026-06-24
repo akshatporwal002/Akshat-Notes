@@ -63,9 +63,9 @@ Example: an estimated $\alpha_1+\beta_1=0.995$ suggests volatility is almost int
 
 In many estimated GARCH(1,1) models:
 
-```text
-alpha_1 + beta_1 approx 1
-```
+$$
+\alpha_{1} + \beta_{1} \approx 1
+$$
 
 This means volatility is highly persistent. IGARCH imposes:
 
@@ -115,7 +115,7 @@ $$
 \sigma_t^2 = (1 - \beta_1) \epsilon_{t-1}^2 + \beta_1 \sigma_{t-1}^2
 $$
 
-If the mean is zero, `epsilon_t = r_t`, so:
+If the mean is zero, $\epsilon_{t} = r_t$, so:
 
 $$
 \sigma_t^2 = (1 - \beta_1) r_{t-1}^2 + \beta_1 \sigma_{t-1}^2
@@ -196,7 +196,7 @@ $$
 q_\alpha = \mu_{T+1|T} + \sigma_{T+1} z_\alpha
 $$
 
-VaR for investment `W_0`:
+VaR for investment $W_0$:
 
 $$
 \operatorname{VaR}_\alpha = | W_0 \times q_\alpha |
@@ -208,7 +208,7 @@ $$
 z_{0.05} = -1.645
 $$
 
-RiskMetrics uses `mu = 0`, so:
+RiskMetrics uses $\mu = 0$, so:
 
 $$
 \begin{aligned}
@@ -272,10 +272,12 @@ $$
 
 Key distinction:
 
-```text
-alpha_0 changes the overall volatility level
-alpha_1 + beta_1 changes persistence
-```
+$$
+\begin{aligned}
+\alpha_{0} & \text{changes the overall volatility level} \\
+\alpha_{1} + \beta_{1} & \text{changes persistence}
+\end{aligned}
+$$
 
 Workshop logic:
 
@@ -285,9 +287,9 @@ $$
 \alpha_1 + \beta_1 = 0.95
 $$
 
-then they have the same persistence. If their `alpha_0` values differ, their unconditional variances differ.
+then they have the same persistence. If their $\alpha_{0}$ values differ, their unconditional variances differ.
 
-If two models have the same long-run variance but different `alpha_1 + beta_1`, the one with larger `alpha_1 + beta_1` has stronger volatility clustering.
+If two models have the same long-run variance but different $\alpha_{1} + \beta_{1}$, the one with larger $\alpha_{1} + \beta_{1}$ has stronger volatility clustering.
 
 ## MA(1) model (Exam)
 
@@ -571,11 +573,11 @@ After the first step, future shocks have expected value zero, so the MA(1) forec
 
 ## What to be able to do
 
-1. Explain IGARCH as GARCH with `alpha_1 + beta_1 = 1`.
+1. Explain IGARCH as GARCH with $\alpha_{1} + \beta_{1} = 1$.
 2. Explain why IGARCH has no finite unconditional variance.
 3. Write the RiskMetrics variance recursion.
 4. Compute one-step RiskMetrics variance forecast.
-5. Compute 5 percent VaR using `z = -1.645`.
+5. Compute 5 percent VaR using $z = -1.645$.
 6. Distinguish persistence from volatility level.
 7. Write MA(1), compute its mean/variance/autocorrelation.
 8. Forecast an MA(1).
