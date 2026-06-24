@@ -92,7 +92,7 @@ Stationarity is the idea that the rules generating the series stay stable. The s
 
 This matters because many time-series formulas assume the past is informative about the future. If the mean and variance keep changing, the past becomes a weak guide. A model fitted to old observations may not describe future observations well.
 
-A time series `Y_t` is covariance stationary if:
+A time series $Y_t$ is covariance stationary if:
 
 $$
 \begin{aligned}
@@ -126,13 +126,13 @@ Concept: a random walk is a price process where shocks permanently change the le
 
 Example: if today's log price is 5 and the shock is 0.02, tomorrow's log price becomes 5.02.
 
-A random walk for log price `p_t` is:
+A random walk for log price $p_t$ is:
 
 $$
 p_t = p_{t-1} + \epsilon_t
 $$
 
-where `epsilon_t` is white noise.
+where $\epsilon_{t}$ is white noise.
 
 By successive substitution:
 
@@ -140,7 +140,7 @@ $$
 p_t = p_0 + \epsilon_1 + \cdots + \epsilon_t
 $$
 
-If `p_0 = 0`:
+If $p_0 = 0$:
 
 $$
 \begin{aligned}
@@ -182,7 +182,7 @@ $$
 p_t = \mu t + p_0 + \epsilon_1 + \cdots + \epsilon_t
 $$
 
-If `p_0 = 0`:
+If $p_0 = 0$:
 
 $$
 \begin{aligned}
@@ -250,9 +250,9 @@ $$
 
 Decision:
 
-```text
-Reject H0 if the ADF statistic is more negative than the ADF critical value
-```
+$$
+\text{Reject }H_0\text{ if the ADF statistic is more negative than the ADF critical value}
+$$
 
 Example logic:
 
@@ -311,13 +311,13 @@ Concept: MDS means the next shock has zero expected value after using past infor
 
 Example: earnings news may be positive or negative, but before it arrives its expected surprise is zero.
 
-A process `epsilon_t` is a martingale difference sequence (MDS) if:
+A process $\epsilon_{t}$ is a martingale difference sequence (MDS) if:
 
 $$
 \mathbb{E}(\epsilon_t | F_{t-1}) = 0
 $$
 
-`F_{t-1}` is the information available up to time `t-1`.
+$F_{t-1}$ is the information available up to time `t-1`.
 
 Meaning: given all past information, the expected current shock is zero.
 
@@ -337,9 +337,9 @@ Concept: AR(1) says today depends on yesterday plus new information. The coeffic
 
 Example: if $\phi_1=0.6$, 60% of yesterday's deviation carries into today.
 
-An AR(1) model is the simplest model of predictable time-series behaviour. It says one lag matters. If yesterday's value was high, today's expected value shifts depending on the sign and size of `phi_1`.
+An AR(1) model is the simplest model of predictable time-series behaviour. It says one lag matters. If yesterday's value was high, today's expected value shifts depending on the sign and size of $\phi_{1}$.
 
-The coefficient `phi_1` is the persistence parameter. If it is close to zero, the series forgets its past quickly. If it is close to one, shocks fade slowly. If it equals one, the model becomes random-walk-like and stationarity fails.
+The coefficient $\phi_{1}$ is the persistence parameter. If it is close to zero, the series forgets its past quickly. If it is close to one, shocks fade slowly. If it equals one, the model becomes random-walk-like and stationarity fails.
 
 An AR(1) model is:
 
@@ -347,19 +347,19 @@ $$
 y_t = c + \phi_1 y_{t-1} + \epsilon_t
 $$
 
-where `epsilon_t` is an MDS.
+where $\epsilon_{t}$ is an MDS.
 
 Stationarity condition:
 
-```text
-|phi_1| < 1
-```
+$$
+|\phi_{1}| < 1
+$$
 
 ### Section Summary
 
 - AR(1) uses one lag of the series to predict the current value.
-- `phi_1` measures persistence.
-- Stationarity requires `|phi_1| < 1`.
+- $\phi_{1}$ measures persistence.
+- Stationarity requires $|\phi_{1}| < 1$.
 
 ## AR(1) conditional mean (Exam)
 
@@ -367,15 +367,15 @@ Concept: the conditional mean is the one-step forecast. Yesterday's value is kno
 
 Example: if $r_{t-1}$ is known, plug it into the AR equation to forecast $r_t$.
 
-Given information at `t-1`, `y_{t-1}` is known:
+Given information at `t-1`, $y_{t-1}$ is known:
 
 $$
 \mathbb{E}(y_t | F_{t-1}) = c + \phi_1 y_{t-1}
 $$
 
-This is the forecast of `y_t` using past information.
+This is the forecast of $y_t$ using past information.
 
-The conditional mean is the model's best guess before the new shock is observed. Once the shock arrives, the realised value can be above or below the forecast. The point is that the forecast uses everything known at `t-1`, and in an AR(1), the relevant known value is `y_{t-1}`.
+The conditional mean is the model's best guess before the new shock is observed. Once the shock arrives, the realised value can be above or below the forecast. The point is that the forecast uses everything known at `t-1`, and in an AR(1), the relevant known value is $y_{t-1}$.
 
 ### Section Summary
 
@@ -414,12 +414,12 @@ r_t = 0.1 + 0.5 r_{t-1} + u_t \\
 \end{aligned}
 $$
 
-The unconditional mean is the long-run centre of the process. For a stationary AR(1), forecasts eventually move back toward this centre. If today's value is unusually high and `0 < phi_1 < 1`, the model predicts that the effect gradually fades rather than staying forever.
+The unconditional mean is the long-run centre of the process. For a stationary AR(1), forecasts eventually move back toward this centre. If today's value is unusually high and $0 < \phi_{1} < 1$, the model predicts that the effect gradually fades rather than staying forever.
 
 ### Section Summary
 
 - The unconditional mean is the long-run average.
-- For AR(1), it is `c / (1 - phi_1)`.
+- For AR(1), it is $c / (1 - \phi_{1})$.
 - It only makes sense under stationarity.
 
 ## AR(1) conditional variance (Exam)
@@ -440,7 +440,7 @@ $$
 \operatorname{Var}(y_t | F_{t-1}) = \sigma_epsilon^2
 $$
 
-because `c + phi_1 y_{t-1}` is already known at time `t-1`.
+because $c + \phi_{1} y_{t-1}$ is already known at time `t-1`.
 
 Practice exam example:
 

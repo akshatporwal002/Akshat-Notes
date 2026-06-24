@@ -96,7 +96,7 @@ $$
 \operatorname{Cov}(u_t, u_{t-k}) = 0 \text{ for } k \ge 1
 $$
 
-because `u_{t-k}` is known at time `t-1`.
+because $u_{t-k}$ is known at time `t-1`.
 
 ## AR(p) model (Exam)
 
@@ -160,7 +160,7 @@ small shocks followed by small shocks
 
 This is volatility clustering.
 
-Even if `r_t` has little autocorrelation, `r_t^2` or `\hat{\epsilon}_t^2` can be autocorrelated.
+Even if $r_t$ has little autocorrelation, $r_t^2$ or $\hat{\epsilon}_t^2$ can be autocorrelated.
 
 ## Testing for ARCH effects (Exam)
 
@@ -176,7 +176,7 @@ $$
 
 To test for ARCH(q) effects:
 
-1. Estimate the mean equation and obtain residuals `\hat{\epsilon}_t`.
+1. Estimate the mean equation and obtain residuals $\hat{\epsilon}_t$.
 2. Square the residuals.
 3. Run the auxiliary regression:
 
@@ -237,7 +237,7 @@ $$
 \end{aligned}
 $$
 
-because `sigma_t` is known given past information.
+because $\sigma_{t}$ is known given past information.
 
 ## ARCH(1) (Exam)
 
@@ -263,12 +263,14 @@ $$
 
 Interpretation:
 
-```text
-alpha_0   baseline variance
-alpha_1   sensitivity of current variance to yesterday's squared shock
-```
+$$
+\begin{aligned}
+\alpha_{0} & \text{baseline variance} \\
+\alpha_{1} & \text{sensitivity of current variance to yesterday's squared shock}
+\end{aligned}
+$$
 
-If yesterday's shock was large in absolute value, `epsilon_{t-1}^2` is large, so today's conditional variance is high.
+If yesterday's shock was large in absolute value, $epsilon_{t-1}^2$ is large, so today's conditional variance is high.
 
 ## ARCH(q) (Exam)
 
@@ -531,4 +533,4 @@ After selecting it, check the residual correlogram. If residual autocorrelation 
 5. Set up an ARCH LM test.
 6. Write ARCH(1) and ARCH(q) models.
 7. Interpret ARCH parameters and conditions.
-8. Derive `var(epsilon_t) = alpha_0 / (1 - alpha_1)` for ARCH(1).
+8. Derive $var(\epsilon_{t}) = \alpha_{0} / (1 - \alpha_{1})$ for ARCH(1).

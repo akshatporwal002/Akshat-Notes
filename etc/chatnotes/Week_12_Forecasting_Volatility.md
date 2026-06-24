@@ -95,7 +95,7 @@ Concept: the one-step forecast is direct because the latest residual and varianc
 
 Example: at time T, plug $\epsilon_T^2$ and $\sigma_T^2$ directly into the GARCH equation.
 
-At time `t`, both `epsilon_t^2` and `sigma_t^2` are known.
+At time `t`, both $\epsilon_{t}^2$ and $\sigma_{t}^2$ are known.
 
 $$
 \begin{aligned}
@@ -112,7 +112,7 @@ Concept: for future steps, the actual future shock is unknown. Its expected squa
 
 Example: for a two-step forecast, $\epsilon_{T+1}^2$ is unknown, so use its conditional expectation.
 
-For `h >= 2`:
+For $h \ge 2$:
 
 $$
 \begin{aligned}
@@ -144,7 +144,7 @@ $$
 \rho = \alpha_1 + \beta_1
 $$
 
-For `h >= 2`:
+For $h \ge 2$:
 
 $$
 \begin{aligned}
@@ -236,8 +236,8 @@ $$
 In the practice exam:
 
 1. Write the fitted mean equation.
-2. Compute `mu_{T+1|T}`.
-3. Compute `sigma_{T+1}^2`.
+2. Compute $mu_{T+1|T}$.
+3. Compute $sigma_{T+1}^2$.
 4. Use `mean \pm 1.96 sd`.
 
 ## One-asset VaR (Exam)
@@ -258,7 +258,7 @@ $$
 q_{0.05} = \mu_{T+1|T} - 1.645 \sqrt{\sigma_{T+1}^2}
 $$
 
-For position value `W_0`:
+For position value $W_0$:
 
 $$
 \operatorname{VaR}_{0.05} = | W_0 q_{0.05} |
@@ -387,7 +387,7 @@ I_{t-1} = 1 \text{ if } \epsilon_{t-1} \le 0 \\
 \end{aligned}
 $$
 
-If `lambda > 0`, bad news has a bigger volatility impact:
+If $\lambda > 0$, bad news has a bigger volatility impact:
 
 $$
 \begin{aligned}
